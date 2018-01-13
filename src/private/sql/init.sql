@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS `minishop`.`users_template` ;
 CREATE TABLE IF NOT EXISTS `minishop`.`users_template` (
   `username` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
+  `password` VARCHAR(500) NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   `right` INT NOT NULL,
   PRIMARY KEY (`id`));
@@ -114,3 +114,21 @@ CREATE TABLE IF NOT EXISTS `minishop`.`coins_bought` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+INSERT INTO `coins_template` (`id`, `price`, `stock`, `name`) VALUES
+(1, '19.7000', 890, 'raiblocks'),
+(2, '24.1100', 430, 'lisk');
+
+INSERT INTO `coins_categories_template` (`id`, `name`) VALUES
+(1, 'dapp'),
+(2, 'dag'),
+(3, 'blockchain');
+
+INSERT INTO `coins_template_has_coins_categories_template` (`coins_template_id`, `coins_categories_template_id`) VALUES
+(2, 1),
+(1, 2),
+(2, 3);
+
+INSERT INTO `users_template` (`username`, `email`, `password`, `id`, `right`) VALUES
+('bbeldame', 'bbeldame@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', 1, 3),
+('adelhom', 'adelhom@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', 2, 3);
