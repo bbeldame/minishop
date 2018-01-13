@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `minishop`.`users_template` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
+  `right` INT NOT NULL,
   PRIMARY KEY (`id`));
 
 
