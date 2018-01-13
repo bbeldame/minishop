@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Minishop | Wine market</title>
+    <title><?= TITLE; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="author" content="<?php echo META_AUHTOR; ?>"/>
-    <meta name="description" content="<?php echo META_DESCRIPTION; ?>"/>
-    <meta name="keywords" content="<?php echo META_KEYWORDS; ?>"/>
+    <meta name="author" content="<?= META_AUHTOR; ?>"/>
+    <meta name="description" content="<?= META_DESCRIPTION; ?>"/>
+    <meta name="keywords" content="<?= META_KEYWORDS; ?>"/>
     <link rel="stylesheet" type="text/css" href="/public/css/minishop.css">
 </head>
 

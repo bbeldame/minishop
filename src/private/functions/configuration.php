@@ -8,6 +8,7 @@ const DB_NAME = "minishop";
 const DB_PORT = "3306";
 
 /* META */
+const TITLE = "Minishop";
 const META_AUHTOR = "adelhom, bbeldame";
 const META_DESCRIPTION = "";
 const META_KEYWORDS = "";
