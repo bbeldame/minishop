@@ -24,3 +24,4 @@ function showAlert(type, msg) {
         document.getElementById("alertDatas").firstElementChild.remove();
     }, 4000);
 }
+
