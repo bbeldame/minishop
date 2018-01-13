@@ -1,0 +1,1 @@
+<div class="page-header">Admin panel</div>

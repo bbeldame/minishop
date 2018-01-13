@@ -11,7 +11,7 @@
 
 <body>
 <div align="center">
-    <a href="/"><img src="/public/images/logo.jpg"></a>
+    <h1>Logo</h1>
 </div>
 
 

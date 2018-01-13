@@ -15,7 +15,6 @@ const META_KEYWORDS = "";
 /* ACCES */
 const GUEST = 0;
 const USER = 1;
-const MODERATOR = 2;
 const ADMIN = 3;
 
 const DEBUG = true;

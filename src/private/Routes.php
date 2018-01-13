@@ -13,7 +13,12 @@ addRoute("/",                       "home",                 GUEST,      false);
 addRoute("/home",                   "home",                 GUEST,      false);
 addRoute("/register",               "register",             GUEST,      true);
 addRoute("/login",                  "login",                GUEST,      true);
+addRoute("/cart",                   "cart",                 GUEST,      false);
+addRoute("/orders",                 "orders",               USER,       false);
 addRoute("/404",                    "404",                  GUEST,      false);
+
+// ADMIN ROUTES
+addRoute("/admin",                  "admin/home",           ADMIN,      true);
 
 session_start();
 
