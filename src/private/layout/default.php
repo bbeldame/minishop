@@ -10,11 +10,12 @@
 </head>
 
 <body>
+<div id="alertDatas">
+    <!-- petite fonction php qui check si $_SESSION['error'] ou $_SESSION['success'] sont !empty -->
+</div>
 <div align="center">
     <h1>Logo</h1>
 </div>
-
-
 <div id="menu">
     <ul>
         <li><a href="/">Home</a></li>
@@ -22,8 +23,8 @@
         <li><a href="/login">Log in</a></li>
         <li><a href="/orders">Orders</a></li>
         <li><a href="/cart">Cart</a></li>
-        <li><a class="button-admin" href="/admin">Admin</a></li>
-        <li><a class="button-logout" href="/logout">Log out</a></li>
+        <li><a class="button-admin" onclick="showAlert('success', 'Admin wesh!');">Admin</a></li>
+        <li><a class="button-logout" onclick="showAlert('error', 'Log out wesh!');">Log out</a></li>
     </ul>
 </div>
 
@@ -36,6 +37,6 @@
     <p class="text-center">Copyright &copy; Minishop - 2017</p>
 </div>
 </body>
-
+<script language="javascript" src="/public/js/minishop.js"></script>
 </html>
 

@@ -13,3 +13,14 @@ function ajaxData(url, data, callback) {
     var datas = JSON.stringify(data);
     xhr.send(datas);
 }
+
+function showAlert(type, msg) {
+    strong = (type === "success") ? "Success!" : "Error!";
+    alert = '<div class="alert '+ type + '" onclick="this.style.display=\'none\';">'
+        + '<strong>' + strong + '</strong> ' + msg
+        + '</div>';
+    document.getElementById("alertDatas").innerHTML += alert;
+    window.setTimeout( function () {
+        document.getElementById("alertDatas").firstElementChild.remove();
+    }, 4000);
+}
