@@ -1,3 +1,6 @@
 <?php
-  echo "hello";
+
+require_once "private/Routes.php";
+
+
 ?>
