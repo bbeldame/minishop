@@ -17,6 +17,7 @@ addRoute("/orders",                 "orders",               USER,       false);
 addRoute("/order/*",                "order",                USER,       false);
 addRoute("/coin/*",                 "coin",                 GUEST,      false);
 addRoute("/404",                    "404",                  GUEST,      false);
+addRoute("/install",                "install",              GUEST,      false);
 
 // ADMIN ROUTES
 addRoute("/admin",                  "admin/home",           ADMIN,      true);
