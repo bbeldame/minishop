@@ -11,6 +11,8 @@ function &getRoutes() {
 function addRoute($route, $view, $acces, $exact_acces, $worker="") {
     if (!empty($view))
         $view .= ".php";
+    if (!empty($worker))
+        $worker .= ".php";
     getRoutes()[$route] = compact('route', 'view', 'acces', 'exact_acces', 'worker');
 }
 

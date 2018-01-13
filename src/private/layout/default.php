@@ -23,8 +23,8 @@
         <li><a href="/login">Log in</a></li>
         <li><a href="/orders">Orders</a></li>
         <li><a href="/cart">Cart</a></li>
-        <li><a class="button-admin" onclick="showAlert('success', 'Admin wesh!');">Admin</a></li>
-        <li><a class="button-logout" onclick="showAlert('error', 'Log out wesh!');">Log out</a></li>
+        <li><a class="button-admin" href="/admin">Admin</a></li>
+        <li><a class="button-logout" href="/logout">Log out</a></li>
     </ul>
 </div>
 

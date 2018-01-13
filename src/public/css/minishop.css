@@ -156,18 +156,18 @@ a:hover {
 **********************************/
 
 
-.table-coins {
+.table-elements {
     border: 1px solid #7e00ff;
     border-radius: 10px;
     -webkit-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
     max-width: calc(100% - 2em);
-    margin: 1em auto;
+    margin: 35px auto;
     overflow: hidden;
     width: 100%;
 }
 
-.table-coins img {
+.table-elements img {
     border-radius: 50%;
     height: 32px;
     width: 32px;
@@ -321,49 +321,11 @@ table tr:nth-child(2n+1) {
     text-align: right;
 }
 
-.cart-totals {
-    border-top: 1px solid #bdc3c7;
-    margin-bottom: 3rem;
-}
-.cart-totals ._column {
-    width: 19.984013%;
-    padding: .5rem;
-    line-height: 1.2;
-}
+/*********************************
+*             CART
+**********************************/
 
-.cart-totals ._column:not(:last-of-type) {
-    border-right: 1px solid #bdc3c7;
-}
-
-.cart-totals ._column:first-of-type {
-    padding-left: 0;
-}
-
-.cart-totals-key {
-    font-size: 1.125em;
-    color: #bdc3c7;
-}
-
-.cart-totals ._column:hover .cart-totals-value,
-.cart-totals ._column:hover .cart-totals-key {
-    color: #333;
-}
-
-.cart-totals-value {
-    font-size: 2em;
-}
-
-._column.checkout {
+.total-price {
+    padding: 10px;
     text-align: right;
-    padding: 0;
-    margin-top: 1.5em;
-    vertical-align: middle;
-}
-
-.checkout-btn:before {
-    margin-right: .5em;
-}
-
-._btn.checkout-btn:hover {
-    background-color: #7e00ff;
 }
