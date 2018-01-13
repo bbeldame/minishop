@@ -1,0 +1,164 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    color: black;
+    background: #fff;
+    margin: 0 auto;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #f0f0f0;
+    outline: none;
+}
+
+a:hover {
+    color: #516977;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#menu, #content, #footer {
+    margin: 0 auto;
+    width: 1300px;
+    border: 1px solid #c9c9c9;
+    background: #f6f6f6;
+    margin-top: 50px;
+}
+
+#footer {
+    margin-bottom: 40px;
+}
+
+/*********************************
+*           MENU
+**********************************/
+
+#menu {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#menu ul {
+    text-align: center;
+    padding: 0;
+}
+
+#menu ul li {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#menu ul li a {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+    background: #2C2D34;
+    border-radius: 2px;
+    -webkit-transition: background 0.2s;
+    transition: background 0.2s;
+    color: #fff;
+    padding: 10px 30px 10px 30px;
+    text-transform:uppercase;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+
+#menu ul li a:hover {
+    background: #6000e6;
+}
+
+
+#menu .button-admin {
+    background: #7e00ff !important;
+}
+
+#menu .button-admin:hover {
+    background: #490092 !important;
+}
+
+
+#menu .button-logout {
+    background: #ff4a48 !important;
+}
+
+#menu .button-logout:hover {
+    background: #8f2d2c !important;
+}
+
+
+/*********************************
+*           MENU
+**********************************/
+
+
+.table-coins {
+    border: 1px solid #7e00ff;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    max-width: calc(100% - 2em);
+    margin: 1em auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.table-coins-header {
+    background-color: #7e00ff;
+    color: white;
+    font-size: 1.5em;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.table-coins img {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+table {
+    width: 100%;
+}
+table td, table th {
+    color: #7e00ff;
+    padding: 10px;
+}
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+table td:last-child {
+    font-size: 0.95em;
+    line-height: 1.4;
+    text-align: left;
+}
+table th {
+    background-color: #daeff1;
+    font-weight: 300;
+}
+table tr:nth-child(2n) {
+    background-color: white;
+}
+table tr:nth-child(2n+1) {
+    background-color: #edf7f8;
+}
+
+
+
+

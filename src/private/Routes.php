@@ -13,6 +13,7 @@ addRoute("/",                       "home",                 GUEST,      false);
 addRoute("/home",                   "home",                 GUEST,      false);
 addRoute("/register",               "register",             GUEST,      true);
 addRoute("/login",                  "login",                GUEST,      true);
+addRoute("/404",                    "404",                  GUEST,      false);
 
 session_start();
 
