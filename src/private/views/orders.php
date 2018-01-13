@@ -13,14 +13,14 @@
             <td>1</td>
             <td>$1 200</td>
             <td>12/12/2018</td>
-            <td style="text-align: center"><button>More</button></td>
+            <td style="text-align: center"><button><a href="/order/1">More</a></button></td>
         </tr>
 
         <tr>
             <td>2</td>
             <td>$3 150</td>
             <td>18/12/2018</td>
-            <td style="text-align: center"><button>More</button></td>
+            <td style="text-align: center"><button><a href="/order/1">More</a></button></td>
         </tr>
     </table>
 </div>

@@ -24,6 +24,10 @@ a {
     outline: none;
 }
 
+button a {
+    color: black;
+}
+
 a:hover {
     color: #516977;
 }

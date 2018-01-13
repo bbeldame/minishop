@@ -28,6 +28,7 @@ addRoute("/admin/category/*",       "admin/category",       ADMIN,      true);
 addRoute("/admin/coin/*",           "admin/coin",           ADMIN,      true);
 addRoute("/admin/order/*",          "admin/order",          ADMIN,      true);
 
+// WOKERS ROUTE
 addRoute("/logout",                 "",                     USER,       false, "logout");
 session_start();
 
