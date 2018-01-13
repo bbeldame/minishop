@@ -11,7 +11,7 @@
 
 <body>
 <div id="alertDatas">
-    <!-- petite fonction php qui check si $_SESSION['error'] ou $_SESSION['success'] sont !empty -->
+    <?php catchNotifications(); ?>
 </div>
 <div align="center">
     <h1>Logo</h1>

@@ -2,6 +2,7 @@
 
 require_once "functions/configuration.php";
 require_once "functions/route.php";
+require_once "functions/user.php";
 
 function var_infos($var) {
     if (DEBUG == true)
