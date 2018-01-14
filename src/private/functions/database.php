@@ -28,8 +28,8 @@ function rawQuery($link, $sql, $select=true, $single=false) {
     return ($result);
 }
 
-function sq($mysqli, $query) {
-  return mysqli_real_escape_string($mysqli, $query);
+function sq($mysqli, $str) {
+  return mysqli_real_escape_string($mysqli, $str);
 }
 
 ?>
