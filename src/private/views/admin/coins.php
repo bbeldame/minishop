@@ -34,27 +34,18 @@
             <th>Quantity</th>
             <th>Edition</th>
         </tr>
-
+        <?php $query = "SELECT * FROM coins_template";
+        foreach (rawQuery(connectDB(), $query, true) as $k => $v) { ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/bitcoin.png" alt="" /></td>
-            <td>Bitcoin</td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v['name'] ?>.png" alt="" /></td>
+            <td><?= ucfirst(strtolower ($v['name'])) ?></td>
             <td>$243 294 470 614</td>
-            <td>$14 481,20</td>
+            <td>$<?= $v['price'] ?></td>
             <td>$12 280 000 000</td>
             <td>4,64%</td>
             <td>$12 280 000</td>
             <td style="text-align: center"><button>Edit</button> | <button>Remove</button></td>
         </tr>
-
-        <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/ethereum.png" alt="" /></td>
-            <td>Ethereum</td>
-            <td>$132 400 874 475</td>
-            <td>$1 365,57</td>
-            <td>$4 982 010 000</td>
-            <td>8,79%</td>
-            <td>$3 280 000</td>
-            <td style="text-align: center"><button>Edit</button> | <button>Remove</button></td>
-        </tr>
+        <?php } ?>
     </table>
 </div>
