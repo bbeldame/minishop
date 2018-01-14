@@ -12,7 +12,7 @@ foreach ($fields as $f)
     if (!isset($data[$f]))
         exit(json_encode("error"));
 
-if (categoryNameExist($data['id']))
+if (categoryNameExist($data['name']))
     exit(json_encode("Une catégorie a déja ce nom.."));
 if (empty($data['name']))
     exit(json_encode("Il faut mettre un nom please :)"));

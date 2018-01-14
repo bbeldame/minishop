@@ -15,8 +15,10 @@ foreach ($fields as $f)
 
 if (!categoryExist($data['id']))
     exit(json_encode("La catégorie n'existe pas.."));
+if (categoryNameExist($data['name']))
+    exit(json_encode("Une catégorie porte déja ce nom"));
 if (empty($data['name']))
     exit(json_encode("Il faut mettre un nom please :)"));
-editCoin($data['id'], $data['stock'], $data['categories']);
+editCategory($data['id'], $data['name']);
 exit(json_encode("success"));
 ?>

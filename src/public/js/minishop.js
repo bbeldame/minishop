@@ -45,6 +45,7 @@ function ajaxData(url, data, callback) {
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
             callback(JSON.parse(xhr.responseText));
         }
     };
@@ -139,6 +140,38 @@ function clickAddCategory() {
     ajaxData("/admin/ajax/category/add", send, function (e) {
         if (e === "success") {
             showAlert("success", "La catégorie " + name + " a éte crée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+
+function clickEditCategory(id) {
+    var send = {};
+    var name = document.getElementById("name").value;
+    send.id = id;
+    send.name = name;
+    ajaxData("/admin/ajax/category/edit", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "La catégorie " + name + " a éte éditée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+
+function clickRemoveCategory(id) {
+    var send = {};
+    send.id = id;
+    ajaxData("/admin/ajax/category/remove", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "La catégorie a éte supprimée!");
             setTimeout(function () {
                 window.location.reload(1);
             }, 800);
