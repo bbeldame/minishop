@@ -208,11 +208,31 @@ function clickEditUser(id) {
     ajaxData("/admin/ajax/user/edit", send, function (e) {
         if (e === "success") {
             showAlert("success", "L'utilisateur a été éditée!");
-            /*setTimeout(function () {
+            setTimeout(function () {
                 window.location.reload(1);
-            }, 800);*/
+            }, 800);
         }
         else
             showAlert("error", e);
     });
 }
+
+/*****************************************
+ * ORDER REMOVE
+ */
+
+function clickRemoveOrder(id) {
+    var send = {};
+    send.id = id;
+    ajaxData("/admin/ajax/order/remove", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "L'order a éte supprimée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+

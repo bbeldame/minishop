@@ -54,4 +54,9 @@ function getAllOrders() {
     return (rawQuery("SELECT * FROM users_orders_template"));
 }
 
+function removeOrder($id) {
+    rawQuery("DELETE FROM coins_bought WHERE users_orders_template_id = $id", false);
+    rawQuery("DELETE FROM users_orders_template WHERE id = $id", false);
+}
+
 ?>

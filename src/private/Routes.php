@@ -64,7 +64,6 @@ addRoute("/admin/ajax/user/remove",     "",                     GUEST,      fals
 addRoute("/admin/ajax/user/edit",       "",                     GUEST,      false, "admin/ajax/user/edit");
 
 addRoute("/admin/ajax/order/remove",    "",                     GUEST,      false, "admin/ajax/order/remove");
-addRoute("/admin/ajax/order/edit",      "",                     GUEST,      false, "admin/ajax/order/edit");
 
 
 session_start();

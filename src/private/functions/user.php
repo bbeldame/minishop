@@ -119,7 +119,6 @@ function userExist($id) {
 }
 
 function removeUser($id) {
-    rawQuery("DELETE FROM users_orders_template WHERE users_template_id = $id", false);
     rawQuery("DELETE FROM users_template WHERE id = $id", false);
 }
 
