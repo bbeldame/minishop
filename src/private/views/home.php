@@ -19,7 +19,7 @@
             <td>$14 481,20</td>
             <td>$12 280 000 000</td>
             <td>4,64%</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" step="0.000001"></span><button>BUY</button></td>
+            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" step="1"></span><button>BUY</button></td>
         </tr>
 
         <tr>
@@ -29,7 +29,7 @@
             <td>$1 365,57</td>
             <td>$4 982 010 000</td>
             <td>8,79%</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" step="0.000001"></span><button>BUY</button></td>
+            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" step="1"></span><button>BUY</button></td>
         </tr>
     </table>
 </div>

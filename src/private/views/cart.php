@@ -14,7 +14,7 @@
         <tr>
             <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/bitcoin.png" alt="" /></td>
             <td>Bitcoin</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.2541" type="number" step="0.000001"></span></td>
+            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.2541" type="number" step="1"></span></td>
             <td>$1 254</td>
             <td><button>Remove all</button></td>
             <td style="text-align: center"><button>More</button></td>
@@ -23,7 +23,7 @@
         <tr>
             <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/ethereum.png" alt="" /></td>
             <td>Ethereum</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.88" type="number" step="0.000001"></span></td>
+            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.88" type="number" step="1"></span></td>
             <td>$800</td>
             <td><button>Remove all</button></td>
             <td style="text-align: center"><button>More</button></td>
