@@ -34,6 +34,8 @@ function getAllCoins($onlyVisible=true) {
     else
         $query = "SELECT * FROM coins_template";
     $result = rawQuery($query);
+    if (is_null($result))
+        return ($result);
     foreach ($result as $k => $v)
         $result[$k]['categories'] = getCoinCategories($v['id']);
     return ($result);

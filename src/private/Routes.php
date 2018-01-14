@@ -29,9 +29,9 @@ addRoute("/install",                    "install",              GUEST,      fals
 // CART ROUTES
 
 addRoute("/cart/add",                   "",                     GUEST,      false, "cart/ajax/add");
-addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
-addRoute("/cart/rm",                "",                     GUEST,      false, "cart/ajax/rm");
-addRoute("/cart/changequantity",    "",                     GUEST,      false, "cart/ajax/changequantity");
+addRoute("/cart/add",                   "",                     GUEST,      false, "cart/ajax/add");
+addRoute("/cart/rm",                    "",                     GUEST,      false, "cart/ajax/rm");
+addRoute("/cart/changequantity",        "",                     GUEST,      false, "cart/ajax/changequantity");
 
 
 // ADMIN ROUTES
@@ -57,9 +57,12 @@ addRoute("/admin/ajax/category/add",    "",                     GUEST,      fals
 addRoute("/admin/ajax/category/remove", "",                     GUEST,      false, "admin/ajax/category/remove");
 addRoute("/admin/ajax/category/edit",   "",                     GUEST,      false, "admin/ajax/category/edit");
 
-addRoute("/admin/ajax/user/add",        "",                     GUEST,      false, "admin/ajax/user/add");
 addRoute("/admin/ajax/user/remove",     "",                     GUEST,      false, "admin/ajax/user/remove");
 addRoute("/admin/ajax/user/edit",       "",                     GUEST,      false, "admin/ajax/user/edit");
+
+addRoute("/admin/ajax/order/remove",    "",                     GUEST,      false, "admin/ajax/order/remove");
+addRoute("/admin/ajax/order/edit",      "",                     GUEST,      false, "admin/ajax/order/edit");
+
 
 session_start();
 
