@@ -3,9 +3,9 @@
 
 <?php if (!is_null($coins)) { ?>
 <div class="form_template">
-    <h2>Filtres</h2>
+    <h2>Catégories</h2>
     <select id="categories" onchange="filterCategories();">
-        <option value="0" selected>None</option>
+        <option value="0" selected>Toutes</option>
         <?php foreach (getAllCategories() as $category) { ?>
             <option value="<?php echo $category['id']?>"><?php echo $category['name']?></option>
         <?php } ?>
@@ -26,7 +26,7 @@
             <th>Nom</th>
             <th>Marketcap</th>
             <th>Prix</th>
-            <th>Volume (24h)</th>
+            <th>Stock</th>
             <th>Change (24h)</th>
             <th>Acheter</th>
         </tr>
@@ -40,6 +40,11 @@
                     if (e.success === true) {
                         showAlert("success", quantity + " "+ coinName + " ajouté" + (quantity > 1 ? "s" : "") + " avec succès !");
                         document.getElementById('basket').innerHTML = 'Panier ('+e.newQuantity+')';
+                    } else {
+                        showAlert("error", e.error);
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 800);
                     }
                 });
             }
@@ -56,9 +61,9 @@
                 <tr class="coin-element <?= $class ?>">
                     <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($v['name'])) ?>.png" alt="" /></td>
                     <td><?= ucfirst(strtolower ($v['name'])) ?></td>
-                    <td>$<?= $v['market_cap'] ?></td>
-                    <td>$<?= $v['price'] ?></td>
-                    <td>$<?= $v['volume_24h'] ?></td>
+                    <td><?= number_format($v['market_cap'], 0, ',', ' '); ?> euros</td>
+                    <td><?= number_format($v['price'], 4, ',', ' '); ?> euros</td>
+                    <td><?= $v["stock"] ?></td>
                     <td><?= $v['percent_change_24h'] ?>%</td>
                     <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" min="1" step="1"></span><button coinName="<?= $v["name"] ?>" coinID="<?= $v['id'] ?>" onclick="addCoin(this)">Ajouter</button></td>
                 </tr>

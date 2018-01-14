@@ -30,6 +30,12 @@ function orderCoinIdExist($id_coin) {
 function payOrder() {
     $cart = cookieCartToArray();
     $total = getTotalPriceOfCart();
+    // ON VERIFIE QUIL Y A AU MOINS UN COIN PAS DELTE
+    foreach ($cart as $key => $value) {
+        if (!coinExist($value["id"])) {
+            return NULL;
+        }
+    }
     $orderId = rawQuery("INSERT INTO users_orders_template
         (id, total_paid, paid_date, users_template_id)
         VALUES (NULL, ".$total.", now(), ".$_SESSION["id"].");", false);

@@ -95,4 +95,15 @@
     }
     arrayToCookieCart($cart);
   }
+
+  function getQuantityOfCoinInCart($id) {
+    $cart = cookieCartToArray();
+    $q = 0;
+    foreach ($cart as $key => $value) {
+      if ($value["id"] === $id) {
+        return $value["quantity"];
+      }
+    }
+    return $q;
+  }
 ?>

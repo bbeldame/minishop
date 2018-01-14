@@ -102,6 +102,7 @@ function getIdUser($username) {
   return $value->id;
 }
 
+
 function getOneUser($id) {
   $result = rawQuery("SELECT * FROM users_template WHERE id = $id", true, true);
   $result['orders'] = rawQuery("SELECT * FROM users_orders_template WHERE users_template_id = $id");
@@ -124,6 +125,22 @@ function removeUser($id) {
 
 function editUser($id, $right) {
     rawQuery("UPDATE users_template SET `right` = " . sq($right) . " WHERE id = " . sq($id), false);
+}
+
+function changePassword($oldPassword, $newPassword) {
+  $userId = $_SESSION["id"];
+  $mysqli = connectDB();
+  $res = mysqli_query($mysqli, "SELECT `password` FROM users_template WHERE id='".sq($userId)."' limit 1;");
+  $value = mysqli_fetch_object($res);
+  $password = $value->password;
+  if (hashPass($oldPassword) !== $password) {
+    closeDB($mysqli);
+    return false;
+  } else {
+    rawQuery("UPDATE users_template SET password = '".hashPass($newPassword)."' WHERE users_template.id=".$userId.";", false);
+  }
+  closeDB($mysqli);
+  return true;
 }
 
 ?>

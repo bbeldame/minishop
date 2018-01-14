@@ -25,10 +25,11 @@
     }
     function changeQuantity(ctx) {
         var coinID = ctx.getAttribute('coinid');
+        var coinname = ctx.getAttribute('coinname');
         var quantity = ctx.value;
         ajaxData('/cart/changequantity', { coinID: coinID, quantity: quantity }, function (e) {
             if (e.success) {
-                showAlert("success", "La coin a éte éditée");
+                showAlert("success", "Vous avez changé la quantité de "+coinname);
                 setTimeout(function () {
                     window.location.reload(1);
                 }, 800);
@@ -47,10 +48,25 @@
                 setTimeout(function () {
                     window.location = "/order/"+e.orderId;
                 }, 800);
+            } else if (e.err === "pasco") {
+                showAlert("error", "Vous devez vous connecter pour payer !");
+                setTimeout(function () {
+                    window.location = "/login";
+                }, 800);
             } else {
                 showAlert("error", "Une erreur s'est produite lors du paiement !");
                 setTimeout(function () {
-                    window.location = reload(1);
+                    window.location.reload(1);
+                }, 800);
+            }
+        });
+    }
+    function emptyBasket(ctx) {
+        ajaxData('/cart/emptybasket', {}, function (e) {
+            if (e.success) {
+                showAlert("success", "Votre panier a bien été vidé.");
+                setTimeout(function () {
+                    window.location = "/";
                 }, 800);
             }
         });
@@ -82,7 +98,7 @@
             <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($coin['name'])) ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($coin["name"])) ?></td>
             <td style="text-align: center"><span class='input-number-wrapper'>
-                <input coinname="<?= $coin["name"] ?>" coinid="<?= $coin["id"] ?>" onchange="changeQuantity(this)" value="<?= $item["quantity"] ?>" type="number" step="1" min="1"></span></td>
+                <input coinname="<?= $coin["name"] ?>" coinid="<?= $coin["id"] ?>" coinname="<?= $coin["name"] ?>" onchange="changeQuantity(this)" value="<?= $item["quantity"] ?>" type="number" step="1" min="1"></span></td>
             <td><?= $coin["price"] ?> euros</td>
             <td><?= $coin["price"] * $item["quantity"] ?> euros</td>
             <td style="text-align:center;"><button coinname="<?= $coin["name"] ?>" coinid="<?= $coin["id"] ?>" onclick="removeCoin(this)">Supprimer</button></td>
@@ -96,4 +112,5 @@
 <div class="total-price">
     <label>Prix total: <?= getTotalPriceOfCart() ?> euros</label>
     <button onclick="pay()" id="payButton">Payer</button>
+    <button onclick="emptyBasket()">Vider le panier</button>
 </div>
