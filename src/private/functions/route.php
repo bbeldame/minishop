@@ -41,10 +41,7 @@ function getRoute($routeKey) {
     if ($_SESSION['rights'] != $routes[$routeKey]['rights'] && $routes[$routeKey]['exact_rights'])
         return ($routes["/404"]);
     if ($_SESSION['rights'] < $routes[$routeKey]['rights'])
-        if (substr($routeKey, 0, strlen("/admin")) === "/admin")
-            return ($routes["/404"]);
-        else
-            return ($routes["/404"]);
+        return ($routes["/404"]);
     return ($routes[$routeKey]);
 }
 ?>
