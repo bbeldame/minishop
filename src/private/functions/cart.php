@@ -9,9 +9,7 @@
     }
     $cartRaw = $_COOKIE["cart"];
     foreach (explode(',', $cartRaw) as $k => $v) {
-      $tmp = explode(':', $v);
-      $id = $tmp[0];
-      $quantity = $tmp[1];
+      list($id, $quantity) = explode(':', $v);
       $cart[] = array(
         "id" => $id,
         "quantity" => intval($quantity)
@@ -43,8 +41,7 @@
     $total = 0;
     $articles = explode(",", $_COOKIE['cart']);
     foreach ($articles as $value) {
-      $tmp = explode(':', $value);
-      $quantity = $tmp[1];
+      list($_, $quantity) = explode(':', $value);
       $total += $quantity;
     }
     return $total;
