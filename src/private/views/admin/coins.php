@@ -30,7 +30,9 @@
             <th>Marketcap</th>
             <th>Price</th>
             <th>Volume (24h)</th>
+            <th>Change (1h)</th>
             <th>Change (24h)</th>
+            <th>Change (7d)</th>
             <th>Quantity</th>
             <th>Edition</th>
         </tr>
@@ -39,11 +41,13 @@
         <tr>
             <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v['name'] ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
-            <td>$243 294 470 614</td>
+            <td>$<?= $v['market_cap'] ?></td>
             <td>$<?= $v['price'] ?></td>
-            <td>$12 280 000 000</td>
-            <td>4,64%</td>
-            <td>$12 280 000</td>
+            <td>$<?= $v['volume_24h'] ?></td>
+            <td><?= $v['percent_change_1h'] ?>%</td>
+            <td><?= $v['percent_change_24h'] ?>%</td>
+            <td><?= $v['percent_change_7d'] ?>%</td>
+            <td>$<?= $v['stock'] ?></td>
             <td style="text-align: center"><button>Edit</button> | <button>Remove</button></td>
         </tr>
         <?php } ?>
