@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-01-14 20:27:05
+Date: 2018-01-14 20:34:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,7 +65,7 @@ CREATE TABLE `coins_template` (
   `percent_change_1h` double(19,0) DEFAULT NULL,
   `percent_change_24h` double(19,0) DEFAULT NULL,
   `percent_change_7d` double(19,0) DEFAULT NULL,
-  `market_cap` int(11) NOT NULL,
+  `market_cap` double(19,0) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
