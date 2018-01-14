@@ -26,7 +26,7 @@
 
 <div class="table-elements">
     <?php
-        $coins = getAllCoins();
+        $coins = getAllCoins(false);
         if (is_null($coins))
             echo "<div align='center'>Aucune coins en liste</div>";
         else {

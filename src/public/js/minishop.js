@@ -98,7 +98,7 @@ function clickDeleteCoin(el) {
     item = el.parentNode.parentNode.parentNode;
     ajaxData("/admin/ajax/coin/remove", {'id': id}, function (e) {
         if (e === "success") {
-            showAlert("success", "La coin a éte éditée");
+            showAlert("success", "La coin a éte supprimée!");
             setTimeout(function () {
                 window.location.reload(1);
             }, 800);
@@ -117,7 +117,7 @@ function clickEditCoin(id) {
     send.categories = categories;
     ajaxData("/admin/ajax/coin/edit", send, function (e) {
         if (e === "success") {
-            showAlert("success", "La coin a éte supprimée!");
+            showAlert("success", "La coin a éte éditée!");
             setTimeout(function () {
                 window.location.reload(1);
             }, 800);
@@ -179,4 +179,40 @@ function clickRemoveCategory(id) {
     });
 }
 
+/*****************************************
+ * USER EDIT REMOVE
+ */
 
+function clickRemoveUser(id) {
+    var send = {};
+    send.id = id;
+    ajaxData("/admin/ajax/user/remove", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "L'utilisateur a éte supprimée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+
+function clickEditUser(id) {
+    var send = {};
+    var rights = document.getElementById("rights");
+    var right = rights.options[rights.selectedIndex].value;
+    console.log(right);
+    send.id = id;
+    send.right = right;
+    ajaxData("/admin/ajax/user/edit", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "L'utilisateur a été éditée!");
+            /*setTimeout(function () {
+                window.location.reload(1);
+            }, 800);*/
+        }
+        else
+            showAlert("error", e);
+    });
+}

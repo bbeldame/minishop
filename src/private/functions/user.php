@@ -102,4 +102,28 @@ function getIdUser($username) {
   return $value->id;
 }
 
+function getOneUser($id) {
+  $result = rawQuery("SELECT * FROM users_template WHERE id = $id", true, true);
+  $result['orders'] = rawQuery("SELECT * FROM users_orders_template WHERE users_template_id = $id");
+  return ($result);
+}
+
+function getAllUsers() {
+  return (rawQuery("SELECT * FROM users_template"));
+}
+
+function userExist($id) {
+    $result = rawQuery("SELECT * FROM users_template WHERE id = $id", true, true);
+    return (!is_null($result)) ? true : false;
+}
+
+function removeUser($id) {
+    rawQuery("DELETE FROM users_orders_template WHERE users_template_id = $id", false);
+    rawQuery("DELETE FROM users_template WHERE id = $id", false);
+}
+
+function editUser($id, $right) {
+    rawQuery("UPDATE users_template SET `right` = " . sq($right) . " WHERE id = " . sq($id), false);
+}
+
 ?>

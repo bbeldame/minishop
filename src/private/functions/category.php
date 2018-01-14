@@ -32,7 +32,7 @@ function getCoinCategories($id) {
 
 function categoryExist($id) {
     $result = rawQuery("SELECT * FROM coins_categories_template WHERE id = $id", true, true);
-    return (count($result) > 0) ? true : false;
+    return (!is_null($result)) ? true : false;
 }
 
 function categoryNameExist($name) {
