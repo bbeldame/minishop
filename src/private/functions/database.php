@@ -16,7 +16,7 @@ function rawQuery($sql, $select=true, $single=false) {
     $result = null;
     if ($select) {
         if ($single)
-          $result = mysqli_fetch_row($query);
+          $result = mysqli_fetch_assoc($query);
         else {
           while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
             $result[] = $row;
