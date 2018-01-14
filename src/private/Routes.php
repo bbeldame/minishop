@@ -50,7 +50,8 @@ addRoute("/admin/order/*",              "admin/order",          ADMIN,      true
 addRoute("/logout",                     "",                     USER,       false, "logout");
 addRoute("/forms/register",             "",                     GUEST,      false, "forms/register");
 addRoute("/forms/login",                "",                     GUEST,      false, "forms/login");
-addRoute("/forms/changeuser",           "",                     USER,      false, "forms/changeuser");
+addRoute("/forms/changeuser",           "",                     USER,       false, "forms/changeuser");
+addRoute("/ajax/orderInfos",            "",                     USER,       false, "ajax/getOrderCoin");
 
 addRoute("/admin/ajax/coin/add",        "",                     GUEST,      false, "admin/ajax/coin/add");
 addRoute("/admin/ajax/coin/remove",     "",                     GUEST,      false, "admin/ajax/coin/remove");

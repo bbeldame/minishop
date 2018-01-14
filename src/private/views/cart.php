@@ -2,6 +2,7 @@
     $cart = cookieCartToArray();
 
     if (empty($cart)) { ?>
+        <div class="page-header">Panier</div>
         <div align="center" style="margin: 45px auto">
             Votre panier est vide !
         </div>
