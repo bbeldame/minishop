@@ -26,7 +26,7 @@
         <?php
             foreach ($results as $k => $v) { ?>
         <tr>
-            <td><?= $k + 1 ?></td>
+            <td><?= $v['id'] ?></td>
             <td><?= $v['total_paid'] ?> euros</td>
             <td><?= $v['paid_date'] ?></td>
             <td style="text-align: center"><button><a href="/order/<?= $v['id'] ?>">Voir</a></button></td>
