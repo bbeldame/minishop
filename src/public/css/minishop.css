@@ -355,3 +355,9 @@ table tr:nth-child(2n+1) {
     height: 150px;
     width: 40%;
 }
+
+
+#pieChart {
+    margin: 0 auto;
+    width: 42%;
+}

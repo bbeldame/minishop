@@ -8,6 +8,9 @@
     <meta name="keywords" content="<?= META_KEYWORDS; ?>"/>
     <link rel="stylesheet" type="text/css" href="/public/css/minishop.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script language="javascript" src="/public/js/minishop.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+    <script src="/public/js/d3pie.min.js"></script>
 </head>
 
 <body>
@@ -49,6 +52,5 @@
     <p class="text-center">Copyright &copy; Minishop - 2017</p>
 </div>
 </body>
-<script language="javascript" src="/public/js/minishop.js"></script>
 </html>
 

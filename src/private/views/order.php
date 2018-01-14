@@ -37,3 +37,66 @@
 <div class="total-price">
     <label>Prix total de la commande: <?= $results[0]['total_paid'] ?> euros</label>
 </div>
+
+<div style="display:none;" id="lolpie" orderid="<?= $_GET[2] ?>"></div>
+
+<div id="pieChart"></div>
+
+<script>
+
+var pie = new d3pie("pieChart", {
+	"size": {
+		"canvasWidth": 590,
+		"pieOuterRadius": "90%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [],
+	},
+	"labels": {
+		"outer": {
+			"pieDistance": 32
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+
+var node = document.getElementById("lolpie");
+var orderId = node.getAttribute('orderid');
+ajaxData('/cart/changequantity', { id: orderId }, function (e) {
+    console.log('e', e);
+});
+
+</script>
