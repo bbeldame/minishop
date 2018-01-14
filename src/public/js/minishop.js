@@ -58,11 +58,17 @@ function showAlert(type, msg) {
 function clickAddNewCoin() {
     var name = document.getElementById("name").value;
     var categories = getSelectValues(document.getElementById("categories"));
+    var stock = document.getElementById("stock").value;
     getCoinViaApi(name, function (e) {
         e.categories = categories;
+        e.stock = stock;
         ajaxData("/admin/ajax/coin/add", e, function (r) {
-            if (r === "success")
+            if (r === "success"){
                 showAlert("success", e.name + " a été ajoutée!");
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 2000);
+            }
             else
                 showAlert("error", r);
 

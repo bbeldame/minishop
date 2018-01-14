@@ -48,9 +48,6 @@ $_SESSION['rights'] = isset($_SESSION['rights']) ? $_SESSION['rights'] : '0';
 $routeKey = getRouteKey();
 $route = getRoute($routeKey);
 
-// infos();
-
-
 if (!empty($route['worker']))
     require_once "worker/" . $route['worker'];
 else

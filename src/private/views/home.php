@@ -15,6 +15,12 @@
 <div class="page-header">Les coins en vente</div>
 
 <div class="table-elements">
+    <?php
+    $coins = getAllCoins();
+    if (is_null($coins))
+    echo "<div align='center'>Aucune coins en liste</div>";
+    else {
+    ?>
     <table cellspacing="0">
         <tr>
             <th>Coin</th>
@@ -27,9 +33,11 @@
         </tr>
 
         <?php
-            foreach ($results as $k => $v) { ?>
+        }
+        if (!is_null($coins))
+            foreach ($coins as $k => $v) { ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v["name"] ?>.png" alt="" /></td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= strtolower($v['name']) ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
             <td>$<?= $v['market_cap'] ?></td>
             <td>$<?= $v['price'] ?></td>

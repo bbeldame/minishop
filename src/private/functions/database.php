@@ -13,6 +13,7 @@ function closeDB($link) {
 function rawQuery($sql, $select=true, $single=false) {
     $link = connectDB();
     $query = mysqli_query($link, $sql);
+    $result = null;
     if ($select) {
         if ($single)
           $result = mysqli_fetch_row($query);
@@ -22,9 +23,11 @@ function rawQuery($sql, $select=true, $single=false) {
         }
     }
     else {
+        $result = mysqli_insert_id($link);
       closeDB($link);
-      return ($query);
+      return ($result);
     }
+
     closeDB($link);
     return ($result);
 }

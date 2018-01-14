@@ -6,8 +6,11 @@
     <div class="inner-wrap">
         <label>Name <input type="text" id="name"/></label>
     </div>
-    <div class="section"><span>2</span>Pick categories</div>
+    <div class="section"><span>2</span>More infos</div>
     <div class="inner-wrap">
+        <label>Stock</label>
+        <input value="1" id="stock" type="number" min="1" step="1">
+        <label>Categories</label>
         <select id="categories" size="4" multiple>
             <?php
             foreach (getAllCategories() as $k => $v) { ?>
@@ -22,6 +25,12 @@
 </div>
 
 <div class="table-elements">
+    <?php
+        $coins = getAllCoins();
+        if (is_null($coins))
+            echo "<div align='center'>Aucune coins en liste</div>";
+        else {
+    ?>
     <table cellspacing="0">
         <tr>
             <th>Coin</th>
@@ -36,13 +45,11 @@
             <th>Edition</th>
         </tr>
         <?php
-        $coins = getAllCoins();
-        if (count($coins) == 0)
-            echo "Aucune coins en liste";
-        else
+        }
+        if (!is_null($coins))
         foreach ($coins as $k => $v) { ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v['name'] ?>.png" alt="" /></td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= strtolower($v['name']) ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
             <td>$<?= $v['market_cap'] ?></td>
             <td>$<?= $v['price'] ?></td>

@@ -2,8 +2,8 @@
     $query = "SELECT total_paid, paid_date, id
         FROM users_orders_template
         WHERE users_template_id=".$_SESSION['id'].";";
-    $results = rawQuery($query, true);
-    if (!$results) { ?>
+    $results = rawQuery($query);
+    if (is_null($results)) { ?>
         <div align="center" style="margin: 45px auto">
             Vous n'avez encore rien commandé, hop hop hop il faut s'y mettre !
         </div>

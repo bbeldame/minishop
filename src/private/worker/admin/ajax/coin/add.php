@@ -7,6 +7,7 @@ $fields = [
     "categories",
     "id",
     "name",
+    "stock",
     "price_usd",
     "24h_volume_usd",
     "market_cap_usd",
@@ -24,5 +25,15 @@ if (count($data["categories"]) == 0)
 if (coinNameExist($data['name']))
     exit(json_encode($data['name'] . " existe déja en base !"));
 
-exit(json_encode("success"));
+$query = addCoin(
+    $data['categories'],
+    $data['price_usd'],
+    $data['stock'],
+    $data['name'],
+    $data['24h_volume_usd'],
+    $data['percent_change_1h'],
+    $data['percent_change_24h'],
+    $data['percent_change_7d'],
+    $data['market_cap_usd']);
+exit(json_encode('success'));
 ?>
