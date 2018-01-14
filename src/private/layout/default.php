@@ -18,7 +18,7 @@
     <?php catchNotifications(); ?>
 </div>
 <div align="center">
-    <h1>Logo</h1>
+    <a><img id="logo" src="/public/images/logo.png"/></a>
 </div>
 <div id="menu">
     <ul>

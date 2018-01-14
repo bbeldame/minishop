@@ -1,17 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : localhost
-Source Server Version : 50505
-Source Host           : localhost:3306
-Source Database       : minishop
-
-Target Server Type    : MYSQL
-Target Server Version : 50505
-File Encoding         : 65001
-
-Date: 2018-01-14 22:58:20
-*/
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -122,4 +108,5 @@ CREATE TABLE `users_template` (
 -- ----------------------------
 -- Records of users_template
 -- ----------------------------
-INSERT INTO `users_template` VALUES ('test', 'test@test.test', 'ecaa0daba01d6023babd9363c1dcecb7974db9aef53d778da542e705c082b428', '4', '3');
+INSERT INTO `users_template` VALUES ('bbeldame', 'bbeldame@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '1', '3');
+INSERT INTO `users_template` VALUES ('adelhom', 'adelhom@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '2', '3');
