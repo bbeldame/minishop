@@ -28,10 +28,11 @@ addRoute("/install",                    "install",              GUEST,      fals
 
 // CART ROUTES
 
-addRoute("/cart/add",                   "",                     GUEST,      false, "cart/ajax/add");
+addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
 addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
 addRoute("/cart/rm",                "",                     GUEST,      false, "cart/ajax/rm");
 addRoute("/cart/changequantity",    "",                     GUEST,      false, "cart/ajax/changequantity");
+addRoute("/cart/pay",               "",                     GUEST,      false, "cart/ajax/pay");
 
 
 // ADMIN ROUTES

@@ -24,7 +24,7 @@
         <?php
         foreach ($results as $k => $v) { ?>
             <tr>
-                <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v["name"] ?>.png" alt="" /></td>
+                <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($v['name'])) ?>.png" alt="" /></td>
                 <td><?= ucfirst(strtolower ($v['name'])) ?></td>
                 <td><?= $v['quantity'] ?></td>
                 <td><?= $v['price'] ?></td>
