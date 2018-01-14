@@ -7,6 +7,7 @@
     <meta name="description" content="<?= META_DESCRIPTION; ?>"/>
     <meta name="keywords" content="<?= META_KEYWORDS; ?>"/>
     <link rel="stylesheet" type="text/css" href="/public/css/minishop.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -19,12 +20,12 @@
 <div id="menu">
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Log in</a></li>
-        <li><a href="/orders">Orders</a></li>
-        <li><a href="/cart">Cart</a></li>
+        <li><a href="/register">Inscription</a></li>
+        <li><a href="/login">Connexion</a></li>
+        <li><a href="/orders">Commandes</a></li>
+        <li><a href="/cart">Panier</a></li>
         <li><a class="button-admin" href="/admin">Admin</a></li>
-        <li><a class="button-logout" href="/logout">Log out</a></li>
+        <li><a class="button-logout" href="/logout">Déconnexion</a></li>
     </ul>
 </div>
 

@@ -9,10 +9,10 @@ function catchNotifications($types=['error', 'success']) {
             continue ;
         switch ($type) {
             case "error":
-                $datas = ["Error !", $_SESSION[$type], "error"];
+                $datas = ["Erreur !", $_SESSION[$type], "error"];
                 break;
             case "success":
-                $datas = ["Success !", $_SESSION[$type], "success"];
+                $datas = ["Succès !", $_SESSION[$type], "success"];
                 break;
             default:
                 break ;
