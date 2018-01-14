@@ -32,6 +32,26 @@
                 setTimeout(function () {
                     window.location.reload(1);
                 }, 800);
+            } else {
+                showAlert("error", e.error);
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 800);
+            }
+        });
+    }
+    function pay(ctx) {
+        ajaxData('/cart/pay', {}, function (e) {
+            if (e.success) {
+                showAlert("success", "Votre paiement a bien été effectuée.");
+                setTimeout(function () {
+                    window.location = "/order/"+e.orderId;
+                }, 800);
+            } else {
+                showAlert("error", "Une erreur s'est produite lors du paiement !");
+                setTimeout(function () {
+                    window.location = reload(1);
+                }, 800);
             }
         });
     }
@@ -75,5 +95,5 @@
 
 <div class="total-price">
     <label>Prix total: <?= getTotalPriceOfCart() ?> euros</label>
-    <button id="payButton">Payer</button>
+    <button onclick="pay()" id="payButton">Payer</button>
 </div>
