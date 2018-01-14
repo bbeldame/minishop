@@ -41,6 +41,7 @@
       if (registerUser($_POST['r-username'], $_POST["r-email"], $_POST["r-password"]) !== false) {
         $_SESSION["username"] = $_POST["r-username"];
         $_SESSION["rights"] = 1;
+        addCookieUser($_POST["r-username"]);
         mail($_POST["r-email"], "Merci de ton inscription".$_POST["r-username"], "Toute l'équipe de CryptoBasket te souhaite la bienvenue et espère que les courbes te seront favorables !");
         successRedirect("Tu es maintenant connecté, ".$_POST["r-username"], "/");
       }
