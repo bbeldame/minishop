@@ -28,6 +28,8 @@ addRoute("/install",                "install",              GUEST,      false);
 
 // CART ROUTES
 addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
+addRoute("/cart/rm",                "",                     GUEST,      false, "cart/ajax/rm");
+addRoute("/cart/changequantity",    "",                     GUEST,      false, "cart/ajax/changequantity");
 
 // ADMIN ROUTES
 addRoute("/admin",                  "admin/home",           ADMIN,      true);
