@@ -75,3 +75,19 @@ function clickAddNewCoin() {
         });
     });
 }
+
+function deleteCoin(el) {
+    console.log(el);
+    id = el.getAttribute("id");
+    item = el.parentNode.parentNode.parentNode;
+    ajaxData("/admin/ajax/coin/remove", {'id': id}, function (e) {
+        if (e === "success") {
+            showAlert("success", "La coin a éte supprimée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}

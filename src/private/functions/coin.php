@@ -7,8 +7,12 @@ function addCoin($categories, $price, $stock, $name, $volume_24h, $percent_chang
         rawQuery("INSERT INTO coins_template_has_coins_categories_template VALUES ($id, " . sq($cat) . ")", false);
 }
 
-function getOneCoin($id) {
-
+function removeCoin($id) {
+    if (!coinExist($id))
+        return false;
+    rawQuery("DELETE FROM coins_template_has_coins_categories_template WHERE coins_template_id = $id", false);
+    rawQuery("DELETE FROM coins_template WHERE id = $id", false);
+    return true;
 }
 
 function getAllCoins($onlyVisible=true) {
@@ -20,7 +24,8 @@ function getAllCoins($onlyVisible=true) {
 }
 
 function coinExist($id) {
-
+    $result = rawQuery("SELECT * FROM coins_template WHERE id = $id", true, true);
+    return (count($result) > 0) ? true : false;
 }
 
 function coinNameExist($name) {

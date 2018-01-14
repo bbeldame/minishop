@@ -42,6 +42,7 @@ addRoute("/forms/register",         "",                     GUEST,      false, "
 addRoute("/forms/login",            "",                     GUEST,      false, "forms/login");
 
 addRoute("/admin/ajax/coin/add",    "",                     GUEST,      false, "admin/ajax/coin/add");
+addRoute("/admin/ajax/coin/remove", "",                     GUEST,      false, "admin/ajax/coin/remove");
 session_start();
 
 $_SESSION['rights'] = isset($_SESSION['rights']) ? $_SESSION['rights'] : '0';
