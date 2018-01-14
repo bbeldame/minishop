@@ -78,6 +78,7 @@ function isConnectedUser() {
       if (doesUserExistsByUsername($username)) {
         $_SESSION["username"] = $username;
         $_SESSION["rights"] = getRightsOfUser($username);
+        $_SESSION["id"] = getIdUser($username);
         // Refresh cookie
         addCookieUser($username);
         return true;
@@ -93,5 +94,12 @@ function isConnectedUser() {
     return true;
 }
 
+function getIdUser($username) {
+  $mysqli = connectDB();
+  $res = mysqli_query($mysqli, "SELECT `id` FROM users_template WHERE username='".sq($mysqli, $username)."' limit 1;");
+  $value = mysqli_fetch_object($res);
+  closeDB($mysqli);
+  return $value->id;
+}
 
 ?>
