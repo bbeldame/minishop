@@ -38,11 +38,9 @@
                 var coinName = ctx.getAttribute('coinname');
                 var quantity = ctx.parentNode.firstChild.firstChild.value;
                 ajaxData('/cart/add', { coinID: coinID, quantity: quantity }, function (e) {
-                    if (e === "success") {
+                    if (e.success === true) {
                         showAlert("success", quantity + " "+ coinName + " ajouté" + (quantity > 1 ? "s" : "") + " avec succès !");
-                        setTimeout(function () {
-                            window.location.reload(1);
-                        }, 800);
+                        document.getElementById('basket').innerHTML = 'Panier ('+e.newQuantity+')';
                     }
                 });
             }
