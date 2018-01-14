@@ -1,17 +1,3 @@
-<?php
-    $query = "SELECT ct.price, ct.stock, ct.market_cap, ct.percent_change_1h,
-        ct.percent_change_24h, ct.percent_change_7d,
-        ct.volume_24h,
-        ct.name, ct.id, GROUP_CONCAT(cc.name)
-        FROM coins_template ct
-        JOIN coins_template_has_coins_categories_template ci
-        ON ct.id=ci.coins_template_id
-        JOIN coins_categories_template cc
-        ON cc.id=ci.coins_categories_template_id
-        GROUP BY ct.id;";
-    $results = rawQuery($query, true);
-?>
-
 <div class="page-header">Les coins en vente</div>
 
 <div class="table-elements">

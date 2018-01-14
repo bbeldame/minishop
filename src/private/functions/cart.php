@@ -64,4 +64,35 @@
     }
     arrayToCookieCart($cart);
   }
+
+  function getTotalPriceOfCart() {
+    $cart = cookieCartToArray();
+    $total = 0;
+    foreach ($cart as $key => $item) {
+      $coin = getOneCoin($item["id"]);
+      $total += $coin["price"] * $item["quantity"];
+    }
+    return ($total);
+  }
+
+  function removeCoinFromCart($id) {
+    $cart = cookieCartToArray();
+    $newCart = array();
+    foreach ($cart as $key => $value) {
+      if ($id !== $value["id"]) {
+        $newCart[] = $value;
+      }
+    }
+    arrayToCookieCart($newCart);
+  }
+
+  function changeQuantityCoinToCart($id, $quantity) {
+    $cart = cookieCartToArray();
+    foreach ($cart as &$value) {
+      if ($value["id"] === $id) {
+        $value["quantity"] = intval($quantity);
+      }
+    }
+    arrayToCookieCart($cart);
+  }
 ?>

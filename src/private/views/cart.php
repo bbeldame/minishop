@@ -1,14 +1,41 @@
 <?php
     $cart = cookieCartToArray();
-    var_infos(cookieCartToArray());
+
     if (empty($cart)) { ?>
         <div align="center" style="margin: 45px auto">
-            Vous n'avez encore rien ajouté à votre panier !
+            Votre panier est vide !
         </div>
     <?php
         exit;
     }
 ?>
+
+<script>
+    function removeCoin(ctx) {
+        var coinID = ctx.getAttribute('coinid');
+        var coinName = ctx.getAttribute('coinname');
+        ajaxData('/cart/rm', { coinID: coinID }, function (e) {
+            if (e.success === true) {
+                showAlert("success", "Vous avez supprimé " + coinName + " de votre panier !");
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 800);
+            }
+        });
+    }
+    function changeQuantity(ctx) {
+        var coinID = ctx.getAttribute('coinid');
+        var quantity = ctx.value;
+        ajaxData('/cart/changequantity', { coinID: coinID, quantity: quantity }, function (e) {
+            if (e.success) {
+                showAlert("success", "La coin a éte éditée");
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 800);
+            }
+        });
+    }
+    </script>
 
 <div class="page-header">Panier</div>
 
@@ -17,33 +44,36 @@
         <tr>
             <th>Coin</th>
             <th>Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Remove</th>
-            <th>More infos</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
+            <th>Prix total</th>
+            <th>Supprimer</th>
         </tr>
 
+        <?php
+            foreach ($cart as $key => $item) {
+                if (!coinExist($item["id"])) {
+                    $coin = getOneCoin($item["id"]);
+                    echo "<tr>Ce coin a été supprimé !</tr>";
+                } else {
+                    $coin = getOneCoin($item["id"]);
+                ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/bitcoin.png" alt="" /></td>
-            <td>Bitcoin</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.2541" type="number" step="1"></span></td>
-            <td>$1 254</td>
-            <td><button>Remove all</button></td>
-            <td style="text-align: center"><button>More</button></td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($coin['name'])) ?>.png" alt="" /></td>
+            <td><?= ucfirst(strtolower ($coin["name"])) ?></td>
+            <td style="text-align: center"><span class='input-number-wrapper'>
+                <input coinname="<?= $coin["name"] ?>" coinid="<?= $coin["id"] ?>" onchange="changeQuantity(this)" value="<?= $item["quantity"] ?>" type="number" step="1" min="1"></span></td>
+            <td><?= $coin["price"] ?> euros</td>
+            <td><?= $coin["price"] * $item["quantity"] ?> euros</td>
+            <td style="text-align:center;"><button coinname="<?= $coin["name"] ?>" coinid="<?= $coin["id"] ?>" onclick="removeCoin(this)">Supprimer</button></td>
         </tr>
 
-        <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/ethereum.png" alt="" /></td>
-            <td>Ethereum</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="0.88" type="number" step="1"></span></td>
-            <td>$800</td>
-            <td><button>Remove all</button></td>
-            <td style="text-align: center"><button>More</button></td>
-        </tr>
+        <?php
+            }} ?>
     </table>
 </div>
 
 <div class="total-price">
-    <label>Total price : $2 054</label>
-    <button>Checkout</button>
+    <label>Prix total: <?= getTotalPriceOfCart() ?> euros</label>
+    <button id="payButton">Payer</button>
 </div>

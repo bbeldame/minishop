@@ -94,11 +94,9 @@ function clickAddCoin() {
 }
 
 function clickDeleteCoin(el) {
-    console.log(el);
     id = el.getAttribute("id");
     item = el.parentNode.parentNode.parentNode;
     ajaxData("/admin/ajax/coin/remove", {'id': id}, function (e) {
-        console.log(e);
         if (e === "success") {
             showAlert("success", "La coin a éte éditée");
             setTimeout(function () {
