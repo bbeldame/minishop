@@ -27,7 +27,7 @@
         <?php if (isConnectedUser()) { ?>
         <li><a href="/orders">Commandes</a></li>
         <?php } ?>
-        <li><a href="/cart">Panier</a></li>
+        <li><a href="/cart">Panier (<?= getTotalCart() ?>)</a></li>
         <?php if (isAdmin()) { ?>
         <li><a class="button-admin" href="/admin">Admin</a></li>
         <?php } ?>

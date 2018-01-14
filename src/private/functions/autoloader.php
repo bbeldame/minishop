@@ -7,5 +7,6 @@ require_once "order.php";
 require_once "route.php";
 require_once "user.php";
 require_once "database.php";
+require_once "cart.php";
 
 ?>

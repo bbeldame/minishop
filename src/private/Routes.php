@@ -26,6 +26,9 @@ addRoute("/coin/*",                 "coin",                 GUEST,      false);
 addRoute("/404",                    "404",                  GUEST,      false);
 addRoute("/install",                "install",              GUEST,      false);
 
+// CART ROUTES
+addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
+
 // ADMIN ROUTES
 addRoute("/admin",                  "admin/home",           ADMIN,      true);
 addRoute("/admin/users",            "admin/users",          ADMIN,      true);

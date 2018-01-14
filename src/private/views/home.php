@@ -32,6 +32,22 @@
             <th>Acheter</th>
         </tr>
 
+        <script>
+            function addCoin(ctx) {
+                var coinID = ctx.getAttribute('coinid');
+                var coinName = ctx.getAttribute('coinname');
+                var quantity = ctx.parentNode.firstChild.firstChild.value;
+                ajaxData('/cart/add', { coinID: coinID, quantity: quantity }, function (e) {
+                    if (e === "success") {
+                        showAlert("success", quantity + " "+ coinName + " ajouté" + (quantity > 1 ? "s" : "") + " avec succès !");
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 800);
+                    }
+                });
+            }
+        </script>
+
         <?php
         }
         if (!is_null($coins))
@@ -43,7 +59,7 @@
             <td>$<?= $v['price'] ?></td>
             <td>$<?= $v['volume_24h'] ?></td>
             <td><?= $v['percent_change_24h'] ?>%</td>
-            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" min="1" step="1"></span><button>Ajouter</button></td>
+            <td style="text-align: center"><span class='input-number-wrapper'><input value="1" type="number" min="1" step="1"></span><button coinName="<?= $v["name"] ?>" coinID="<?= $v['id'] ?>" onclick="addCoin(this)">Ajouter</button></td>
         </tr>
         <?php } ?>
     </table>
