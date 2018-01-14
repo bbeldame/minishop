@@ -39,8 +39,9 @@
 
       // all good
       if (registerUser($_POST['r-username'], $_POST["r-email"], $_POST["r-password"]) !== false) {
-        // ICI METTRE SESSION USER @todo
-        // J'ai fais la function qui récupére le rights
+        $_SESSION["username"] = $_POST["r-username"];
+        $_SESSION["rights"] = 1;
+        mail($_POST["r-email"], "Merci de ton inscription".$_POST["r-username"], "Toute l'équipe de CryptoBasket te souhaite la bienvenue et espère que les courbes te seront favorables !");
         successRedirect("Tu es maintenant connecté, ".$_POST["r-username"], "/");
       }
     } else {

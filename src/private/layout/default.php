@@ -19,13 +19,31 @@
 </div>
 <div id="menu">
     <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/">Accueil</a></li>
+        <?php
+            if (!isConnectedUser()) {
+                ?>
         <li><a href="/register">Inscription</a></li>
         <li><a href="/login">Connexion</a></li>
+        <?php
+            }
+        ?>
         <li><a href="/orders">Commandes</a></li>
         <li><a href="/cart">Panier</a></li>
-        <li><a class="button-admin" href="/admin">Admin</a></li>
-        <li><a class="button-logout" href="/logout">Déconnexion</a></li>
+        <?php
+            if (isAdmin()) {
+                ?>
+                <li><a class="button-admin" href="/admin">Admin</a></li>
+            <?php
+            }
+        ?>
+        <?php
+            if (isConnectedUser()) {
+                ?>
+            <li><a class="button-logout" href="/logout">Déconnexion</a></li>
+            <?php
+            }
+            ?>
     </ul>
 </div>
 
