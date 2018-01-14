@@ -1,134 +1,134 @@
-DROP SCHEMA IF EXISTS `minishop` ;
+/*
+Navicat MySQL Data Transfer
 
--- -----------------------------------------------------
--- Schema minishop
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `minishop` DEFAULT CHARACTER SET utf8 ;
-USE `minishop` ;
+Source Server         : localhost
+Source Server Version : 50505
+Source Host           : localhost:3306
+Source Database       : minishop
 
--- -----------------------------------------------------
--- Table `minishop`.`users_template`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`users_template` ;
+Target Server Type    : MYSQL
+Target Server Version : 50505
+File Encoding         : 65001
 
-CREATE TABLE IF NOT EXISTS `minishop`.`users_template` (
-  `username` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(500) NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `right` INT NOT NULL,
-  PRIMARY KEY (`id`));
+Date: 2018-01-14 14:54:53
+*/
 
+SET FOREIGN_KEY_CHECKS=0;
 
--- -----------------------------------------------------
--- Table `minishop`.`coins_template`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`coins_template` ;
-
-CREATE TABLE IF NOT EXISTS `minishop`.`coins_template` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `price` DECIMAL(19,4) NOT NULL,
-  `stock` INT NOT NULL DEFAULT 0,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `minishop`.`coins_categories_template`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`coins_categories_template` ;
-
-CREATE TABLE IF NOT EXISTS `minishop`.`coins_categories_template` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `minishop`.`coins_template_has_coins_categories_template`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`coins_template_has_coins_categories_template` ;
-
-CREATE TABLE IF NOT EXISTS `minishop`.`coins_template_has_coins_categories_template` (
-  `coins_template_id` INT NOT NULL,
-  `coins_categories_template_id` INT NOT NULL,
-  PRIMARY KEY (`coins_template_id`, `coins_categories_template_id`),
-  INDEX `fk_coins_template_has_coins_categories_template_coins_categ_idx` (`coins_categories_template_id` ASC),
-  INDEX `fk_coins_template_has_coins_categories_template_coins_templ_idx` (`coins_template_id` ASC),
-  CONSTRAINT `fk_coins_template_has_coins_categories_template_coins_template`
-    FOREIGN KEY (`coins_template_id`)
-    REFERENCES `minishop`.`coins_template` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_coins_template_has_coins_categories_template_coins_categor1`
-    FOREIGN KEY (`coins_categories_template_id`)
-    REFERENCES `minishop`.`coins_categories_template` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `minishop`.`users_orders_template`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`users_orders_template` ;
-
-CREATE TABLE IF NOT EXISTS `minishop`.`users_orders_template` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `total_paid` DECIMAL(19,4) NOT NULL,
-  `paid_date` DATETIME NOT NULL,
-  `users_template_id` INT NOT NULL,
+-- ----------------------------
+-- Table structure for coins_bought
+-- ----------------------------
+DROP TABLE IF EXISTS `coins_bought`;
+CREATE TABLE `coins_bought` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantity` int(11) NOT NULL,
+  `coins_template_id` int(11) NOT NULL,
+  `users_orders_template_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_orders_template_users_template1_idx` (`users_template_id` ASC),
-  CONSTRAINT `fk_users_orders_template_users_template1`
-    FOREIGN KEY (`users_template_id`)
-    REFERENCES `minishop`.`users_template` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `fk_coins_bought_coins_template1_idx` (`coins_template_id`),
+  KEY `fk_coins_bought_users_orders_template1_idx` (`users_orders_template_id`),
+  CONSTRAINT `fk_coins_bought_coins_template1` FOREIGN KEY (`coins_template_id`) REFERENCES `coins_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_coins_bought_users_orders_template1` FOREIGN KEY (`users_orders_template_id`) REFERENCES `users_orders_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of coins_bought
+-- ----------------------------
 
--- -----------------------------------------------------
--- Table `minishop`.`coins_bought`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `minishop`.`coins_bought` ;
+-- ----------------------------
+-- Table structure for coins_categories_template
+-- ----------------------------
+DROP TABLE IF EXISTS `coins_categories_template`;
+CREATE TABLE `coins_categories_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `minishop`.`coins_bought` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `quantity` INT NOT NULL,
-  `coins_template_id` INT NOT NULL,
-  `users_orders_template_id` INT NOT NULL,
+-- ----------------------------
+-- Records of coins_categories_template
+-- ----------------------------
+INSERT INTO `coins_categories_template` VALUES ('1', 'dapp');
+INSERT INTO `coins_categories_template` VALUES ('2', 'dag');
+INSERT INTO `coins_categories_template` VALUES ('3', 'blockchain');
+
+-- ----------------------------
+-- Table structure for coins_template
+-- ----------------------------
+DROP TABLE IF EXISTS `coins_template`;
+CREATE TABLE `coins_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` double(19,4) NOT NULL,
+  `stock` double(19,0) NOT NULL DEFAULT '0',
+  `name` varchar(45) NOT NULL,
+  `volume_24h` double(19,0) DEFAULT NULL,
+  `percent_change_1h` double(19,0) DEFAULT NULL,
+  `percent_change_24h` double(19,0) DEFAULT NULL,
+  `percent_change_7d` double(19,0) DEFAULT NULL,
+  `market_cap` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of coins_template
+-- ----------------------------
+INSERT INTO `coins_template` VALUES ('1', '19.7100', '890', 'raiblocks', '11', '545', '54545', '4848', '1545451');
+INSERT INTO `coins_template` VALUES ('2', '24.1100', '430', 'lisk', '10', '111', '58789', '547', '847515');
+
+-- ----------------------------
+-- Table structure for coins_template_has_coins_categories_template
+-- ----------------------------
+DROP TABLE IF EXISTS `coins_template_has_coins_categories_template`;
+CREATE TABLE `coins_template_has_coins_categories_template` (
+  `coins_template_id` int(11) NOT NULL,
+  `coins_categories_template_id` int(11) NOT NULL,
+  PRIMARY KEY (`coins_template_id`,`coins_categories_template_id`),
+  KEY `fk_coins_template_has_coins_categories_template_coins_categ_idx` (`coins_categories_template_id`),
+  KEY `fk_coins_template_has_coins_categories_template_coins_templ_idx` (`coins_template_id`),
+  CONSTRAINT `fk_coins_template_has_coins_categories_template_coins_categor1` FOREIGN KEY (`coins_categories_template_id`) REFERENCES `coins_categories_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_coins_template_has_coins_categories_template_coins_template` FOREIGN KEY (`coins_template_id`) REFERENCES `coins_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of coins_template_has_coins_categories_template
+-- ----------------------------
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('1', '2');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('2', '1');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('2', '3');
+
+-- ----------------------------
+-- Table structure for users_orders_template
+-- ----------------------------
+DROP TABLE IF EXISTS `users_orders_template`;
+CREATE TABLE `users_orders_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `total_paid` decimal(19,4) NOT NULL,
+  `paid_date` datetime NOT NULL,
+  `users_template_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_coins_bought_coins_template1_idx` (`coins_template_id` ASC),
-  INDEX `fk_coins_bought_users_orders_template1_idx` (`users_orders_template_id` ASC),
-  CONSTRAINT `fk_coins_bought_coins_template1`
-    FOREIGN KEY (`coins_template_id`)
-    REFERENCES `minishop`.`coins_template` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_coins_bought_users_orders_template1`
-    FOREIGN KEY (`users_orders_template_id`)
-    REFERENCES `minishop`.`users_orders_template` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `fk_users_orders_template_users_template1_idx` (`users_template_id`),
+  CONSTRAINT `fk_users_orders_template_users_template1` FOREIGN KEY (`users_template_id`) REFERENCES `users_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `coins_template` (`id`, `price`, `stock`, `name`) VALUES
-(1, '19.7000', 890, 'raiblocks'),
-(2, '24.1100', 430, 'lisk');
+-- ----------------------------
+-- Records of users_orders_template
+-- ----------------------------
 
-INSERT INTO `coins_categories_template` (`id`, `name`) VALUES
-(1, 'dapp'),
-(2, 'dag'),
-(3, 'blockchain');
+-- ----------------------------
+-- Table structure for users_template
+-- ----------------------------
+DROP TABLE IF EXISTS `users_template`;
+CREATE TABLE `users_template` (
+  `username` varchar(16) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `right` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-INSERT INTO `coins_template_has_coins_categories_template` (`coins_template_id`, `coins_categories_template_id`) VALUES
-(2, 1),
-(1, 2),
-(2, 3);
-
-INSERT INTO `users_template` (`username`, `email`, `password`, `id`, `right`) VALUES
-('bbeldame', 'bbeldame@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', 1, 3),
-('adelhom', 'adelhom@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', 2, 3);
+-- ----------------------------
+-- Records of users_template
+-- ----------------------------
+INSERT INTO `users_template` VALUES ('bbeldame', 'bbeldame@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '1', '3');
+INSERT INTO `users_template` VALUES ('adelhom', 'adelhom@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '2', '3');
