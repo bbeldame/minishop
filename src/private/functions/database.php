@@ -11,18 +11,21 @@ function closeDB($link) {
 }
 
 function rawQuery($link, $sql, $select=true, $single=false) {
-  $query = mysqli_query($link, $sql);
-  if ($select) {
-    if ($single)
-      $result = mysqli_fetch_row($query);
-    else {
-      while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
-        $result[] = $row;
+    $query = mysqli_query($link, $sql);
+    if ($select) {
+        if ($single)
+          $result = mysqli_fetch_row($query);
+        else {
+          while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
+            $result[] = $row;
+        }
     }
-  }
-  else
-    return ($query);
-  return ($result);
+    else {
+      closeDB($link);
+      return ($query);
+    }
+    closeDB($link);
+    return ($result);
 }
 
 function sq($mysqli, $query) {
