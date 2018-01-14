@@ -10,7 +10,8 @@ function closeDB($link) {
   mysqli_close($link);
 }
 
-function rawQuery($link, $sql, $select=true, $single=false) {
+function rawQuery($sql, $select=true, $single=false) {
+    $link = connectDB();
     $query = mysqli_query($link, $sql);
     if ($select) {
         if ($single)
@@ -28,8 +29,10 @@ function rawQuery($link, $sql, $select=true, $single=false) {
     return ($result);
 }
 
-function sq($mysqli, $query) {
-  return mysqli_real_escape_string($mysqli, $query);
+function sq($var) {
+    $link = connectDB();
+    $result = mysqli_real_escape_string($link, $var);
+    closeDB($link);
 }
 
 ?>

@@ -40,6 +40,8 @@ addRoute("/admin/order/*",          "admin/order",          ADMIN,      true);
 addRoute("/logout",                 "",                     USER,       false, "logout");
 addRoute("/forms/register",         "",                     GUEST,      false, "forms/register");
 addRoute("/forms/login",            "",                     GUEST,      false, "forms/login");
+
+addRoute("/admin/ajax/coin/add",    "",                     GUEST,      false, "admin/ajax/coin/add");
 session_start();
 
 $_SESSION['rights'] = isset($_SESSION['rights']) ? $_SESSION['rights'] : '0';

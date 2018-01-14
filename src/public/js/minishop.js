@@ -1,3 +1,18 @@
+function getSelectValues(select) {
+    var result = [];
+    var options = select && select.options;
+    var opt;
+
+    for (var i=0, iLen=options.length; i<iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected) {
+            result.push(opt.value || opt.text);
+        }
+    }
+    return result;
+}
+
 function ajaxData(url, data, callback) {
     addr = location.href.substring(0, location.href.indexOf('/', 8));
     var xhr = new XMLHttpRequest();
@@ -17,15 +32,16 @@ function ajaxData(url, data, callback) {
 function getCoinViaApi(coin, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://api.coinmarketcap.com/v1/ticker/" + coin + "/", true);
-
+    xhr.send();
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             callback(JSON.parse(xhr.responseText)[0]);
         }
-        else if (xhr.readyState === 404)
-            callback("error");
+        else if (xhr.status === 404 && xhr.readyState === 4){
+            showAlert("error", "La coin n'existe pas!")
+        }
+
     };
-    xhr.send();
 }
 
 function showAlert(type, msg) {
@@ -39,9 +55,14 @@ function showAlert(type, msg) {
     }, 4000);
 }
 
-getCoinViaApi("bitcoin", function (e) {
-    if (e === "error")
-        showAlert("error", "La coin n'existe pas!");
-    else
-        console.log(e);
-});
+function clickAddNewCoin() {
+    var name = document.getElementById("name").value;
+    var categories = getSelectValues(document.getElementById("categories"));
+    getCoinViaApi(name, function (e) {
+        e.categories = categories;
+        ajaxData("/admin/ajax/coin/add", e, function (r) {
+            if (e !== "success")
+                showAlert("error", e);
+        });
+    });
+}
