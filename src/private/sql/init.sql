@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-01-14 20:34:56
+Date: 2018-01-14 22:58:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `coins_bought` (
   KEY `fk_coins_bought_users_orders_template1_idx` (`users_orders_template_id`),
   CONSTRAINT `fk_coins_bought_coins_template1` FOREIGN KEY (`coins_template_id`) REFERENCES `coins_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_coins_bought_users_orders_template1` FOREIGN KEY (`users_orders_template_id`) REFERENCES `users_orders_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of coins_bought
@@ -43,14 +43,11 @@ CREATE TABLE `coins_categories_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of coins_categories_template
 -- ----------------------------
-INSERT INTO `coins_categories_template` VALUES ('1', 'Coin');
-INSERT INTO `coins_categories_template` VALUES ('10', 'Token');
-INSERT INTO `coins_categories_template` VALUES ('11', 'ICO');
 
 -- ----------------------------
 -- Table structure for coins_template
@@ -67,14 +64,11 @@ CREATE TABLE `coins_template` (
   `percent_change_7d` double(19,0) DEFAULT NULL,
   `market_cap` double(19,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of coins_template
 -- ----------------------------
-INSERT INTO `coins_template` VALUES ('21', '10.5242', '15544', 'SALT', '20390300', '-5', '-14', '-20', '569810193');
-INSERT INTO `coins_template` VALUES ('24', '0.4282', '1', 'Nxt', '17553200', '2', '-5', '-22', '427790756');
-INSERT INTO `coins_template` VALUES ('25', '13662.0000', '18', 'Bitcoin', '11178500000', '1', '-5', '-17', '2147483647');
 
 -- ----------------------------
 -- Table structure for coins_template_has_coins_categories_template
@@ -93,10 +87,6 @@ CREATE TABLE `coins_template_has_coins_categories_template` (
 -- ----------------------------
 -- Records of coins_template_has_coins_categories_template
 -- ----------------------------
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('21', '1');
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('21', '10');
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('24', '11');
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('25', '1');
 
 -- ----------------------------
 -- Table structure for users_orders_template
@@ -110,7 +100,7 @@ CREATE TABLE `users_orders_template` (
   PRIMARY KEY (`id`),
   KEY `fk_users_orders_template_users_template1_idx` (`users_template_id`),
   CONSTRAINT `fk_users_orders_template_users_template1` FOREIGN KEY (`users_template_id`) REFERENCES `users_template` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users_orders_template
@@ -127,10 +117,9 @@ CREATE TABLE `users_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `right` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users_template
 -- ----------------------------
-INSERT INTO `users_template` VALUES ('bbeldame', 'bbeldame@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '1', '3');
-INSERT INTO `users_template` VALUES ('adelhom', 'adelhom@student.42.fr', 'de01c373eb05c69a019dd0b111d7f57ea28b9a4968d952527bd7fc0e47928040', '2', '3');
+INSERT INTO `users_template` VALUES ('test', 'test@test.test', 'ecaa0daba01d6023babd9363c1dcecb7974db9aef53d778da542e705c082b428', '4', '3');

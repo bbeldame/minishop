@@ -21,6 +21,14 @@ foreach ($fields as $f)
         exit(json_encode("error"));
 
 $result = getOneOrder($data['id']);
-$result['color'] = random_color();
-exit(json_encode($result));
+$a = $result['details'];
+$arr = [];
+foreach ($a as $k => $v) {
+    $arr[] = array(
+        "color" => random_color(),
+        "label" => $v['name'],
+        "value" => intval($v['quantity'])
+    );
+}
+exit(json_encode($arr));
 ?>
