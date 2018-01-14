@@ -14,6 +14,20 @@ function ajaxData(url, data, callback) {
     xhr.send(datas);
 }
 
+function getCoinViaApi(coin, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.coinmarketcap.com/v1/ticker/" + coin + "/", true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(JSON.parse(xhr.responseText)[0]);
+        }
+        else if (xhr.readyState === 404)
+            callback("error");
+    };
+    xhr.send();
+}
+
 function showAlert(type, msg) {
     strong = (type === "success") ? "Success!" : "Error!";
     alert = '<div class="alert '+ type + '" onclick="this.style.display=\'none\';">'
@@ -25,3 +39,9 @@ function showAlert(type, msg) {
     }, 4000);
 }
 
+getCoinViaApi("bitcoin", function (e) {
+    if (e === "error")
+        showAlert("error", "La coin n'existe pas!");
+    else
+        console.log(e);
+});

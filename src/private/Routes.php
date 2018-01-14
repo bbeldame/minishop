@@ -7,6 +7,13 @@ function var_infos($var) {
         echo '<pre>' . var_export($var, true) . '</pre>';
 }
 
+function infos() {
+    if (DEBUG) {
+        var_infos($_SESSION);
+        var_infos($_COOKIE);
+    }
+}
+
 // WEBSITE ROUTES
 addRoute("/",                       "home",                 GUEST,      false);
 addRoute("/home",                   "home",                 GUEST,      false);
@@ -35,8 +42,11 @@ addRoute("/forms/register",         "",                     GUEST,      false, "
 addRoute("/forms/login",            "",                     GUEST,      false, "forms/login");
 session_start();
 
+$_SESSION['rights'] = isset($_SESSION['rights']) ? $_SESSION['rights'] : '0';
 $routeKey = getRouteKey();
 $route = getRoute($routeKey);
+
+infos();
 
 if (!empty($route['worker']))
     require_once "worker/" . $route['worker'];

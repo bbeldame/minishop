@@ -60,9 +60,9 @@ function isConnectedUser() {
 }
 
 function isAdmin() {
-  if (isset($_SESSION['username']) && isset($_SESSION['rights']) &&
-    ($_SESSION['rights'] === "3" || $_SESSION['rights'] === 3))
-    return (true);
+  if (isset($_SESSION['username']))
+    if ($_SESSION['rights'] == ADMIN)
+      return (true);
   else
     return (false);
 }

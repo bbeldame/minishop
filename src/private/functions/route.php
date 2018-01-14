@@ -8,12 +8,12 @@ function &getRoutes() {
     return ($_routes);
 }
 
-function addRoute($route, $view, $acces, $exact_acces, $worker="") {
+function addRoute($route, $view, $rights, $exact_rights, $worker="") {
     if (!empty($view))
         $view .= ".php";
     if (!empty($worker))
         $worker .= ".php";
-    getRoutes()[$route] = compact('route', 'view', 'acces', 'exact_acces', 'worker');
+    getRoutes()[$route] = compact('route', 'view', 'rights', 'exact_rights', 'worker');
 }
 
 function getRouteKey() {
@@ -38,13 +38,13 @@ function getRoute($routeKey) {
     $routes =  getRoutes();
     if (!array_key_exists($routeKey, $routes))
         return ($routes["/404"]);
-    /*if ($_SESSION['acces'] != $routes[$routeKey]['acces'] && $routes[$routeKey]['exact_acces'])
-        return ($routes["/403"]);
-    if ($_SESSION['acces'] < $routes[$routeKey]['acces'])
+    if ($_SESSION['rights'] != $routes[$routeKey]['rights'] && $routes[$routeKey]['exact_rights'])
+        return ($routes["/404"]);
+    if ($_SESSION['rights'] < $routes[$routeKey]['rights'])
         if (substr($routeKey, 0, strlen("/admin")) === "/admin")
             return ($routes["/404"]);
         else
-            return ($routes["/403"]);*/
+            return ($routes["/404"]);
     return ($routes[$routeKey]);
 }
 ?>
