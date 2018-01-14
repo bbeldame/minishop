@@ -57,7 +57,7 @@ function ajaxData(url, data, callback) {
  */
 
 function showAlert(type, msg) {
-    strong = (type === "success") ? "Success!" : "Error!";
+    strong = (type === "success") ? "Succès !" : "Erreur !";
     alert = '<div class="alert '+ type + '" onclick="this.style.display=\'none\';">'
         + '<strong>' + strong + '</strong> ' + msg
         + '</div>';

@@ -1,4 +1,16 @@
-<div class="page-header">Cart</div>
+<?php
+    $cart = cookieCartToArray();
+    var_infos(cookieCartToArray());
+    if (empty($cart)) { ?>
+        <div align="center" style="margin: 45px auto">
+            Vous n'avez encore rien ajouté à votre panier !
+        </div>
+    <?php
+        exit;
+    }
+?>
+
+<div class="page-header">Panier</div>
 
 <div class="table-elements">
     <table cellspacing="0">
