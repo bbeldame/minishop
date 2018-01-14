@@ -37,7 +37,7 @@
         if (!is_null($coins))
             foreach ($coins as $k => $v) { ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= strtolower($v['name']) ?>.png" alt="" /></td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($v['name'])) ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
             <td>$<?= $v['market_cap'] ?></td>
             <td>$<?= $v['price'] ?></td>

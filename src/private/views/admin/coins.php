@@ -49,7 +49,7 @@
         if (!is_null($coins))
         foreach ($coins as $k => $v) { ?>
         <tr>
-            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= strtolower($v['name']) ?>.png" alt="" /></td>
+            <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= str_replace(' ', '-', strtolower($v['name'])) ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
             <td>$<?= $v['market_cap'] ?></td>
             <td>$<?= $v['price'] ?></td>
@@ -57,7 +57,7 @@
             <td><?= $v['percent_change_1h'] ?>%</td>
             <td><?= $v['percent_change_24h'] ?>%</td>
             <td><?= $v['percent_change_7d'] ?>%</td>
-            <td>$<?= $v['stock'] ?></td>
+            <td><?= $v['stock'] ?></td>
             <td style="text-align: center"><button>Edit</button> | <button>Remove</button></td>
         </tr>
         <?php } ?>

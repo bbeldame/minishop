@@ -67,7 +67,7 @@ function clickAddNewCoin() {
                 showAlert("success", e.name + " a été ajoutée!");
                 setTimeout(function () {
                     window.location.reload(1);
-                }, 2000);
+                }, 800);
             }
             else
                 showAlert("error", r);

@@ -2,7 +2,9 @@
 
 function addCoin($categories, $price, $stock, $name, $volume_24h, $percent_change_1h, $percent_change_24h, $percent_change_7d, $market_cap) {
     $query = "INSERT INTO coins_template (price, stock, name, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap) VALUES (" . sq($price) . "," . sq($stock) . ", '" . sq($name) . "', " . sq($volume_24h) . ", " . sq($percent_change_1h) . ", " . sq($percent_change_24h) . "," . sq($percent_change_7d) . ", " . sq($market_cap) . ")";
-    return rawQuery($query, false);
+    $id = rawQuery($query, false);
+    foreach ($categories as $cat)
+        rawQuery("INSERT INTO coins_template_has_coins_categories_template VALUES ($id, " . sq($cat) . ")", false);
 }
 
 function getOneCoin($id) {
