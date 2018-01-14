@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-01-14 14:54:53
+Date: 2018-01-14 20:27:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,14 +43,14 @@ CREATE TABLE `coins_categories_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of coins_categories_template
 -- ----------------------------
-INSERT INTO `coins_categories_template` VALUES ('1', 'dapp');
-INSERT INTO `coins_categories_template` VALUES ('2', 'dag');
-INSERT INTO `coins_categories_template` VALUES ('3', 'blockchain');
+INSERT INTO `coins_categories_template` VALUES ('1', 'Coin');
+INSERT INTO `coins_categories_template` VALUES ('10', 'Token');
+INSERT INTO `coins_categories_template` VALUES ('11', 'ICO');
 
 -- ----------------------------
 -- Table structure for coins_template
@@ -67,13 +67,14 @@ CREATE TABLE `coins_template` (
   `percent_change_7d` double(19,0) DEFAULT NULL,
   `market_cap` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of coins_template
 -- ----------------------------
-INSERT INTO `coins_template` VALUES ('1', '19.7100', '890', 'raiblocks', '11', '545', '54545', '4848', '1545451');
-INSERT INTO `coins_template` VALUES ('2', '24.1100', '430', 'lisk', '10', '111', '58789', '547', '847515');
+INSERT INTO `coins_template` VALUES ('21', '10.5242', '15544', 'SALT', '20390300', '-5', '-14', '-20', '569810193');
+INSERT INTO `coins_template` VALUES ('24', '0.4282', '1', 'Nxt', '17553200', '2', '-5', '-22', '427790756');
+INSERT INTO `coins_template` VALUES ('25', '13662.0000', '18', 'Bitcoin', '11178500000', '1', '-5', '-17', '2147483647');
 
 -- ----------------------------
 -- Table structure for coins_template_has_coins_categories_template
@@ -92,9 +93,10 @@ CREATE TABLE `coins_template_has_coins_categories_template` (
 -- ----------------------------
 -- Records of coins_template_has_coins_categories_template
 -- ----------------------------
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('1', '2');
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('2', '1');
-INSERT INTO `coins_template_has_coins_categories_template` VALUES ('2', '3');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('21', '1');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('21', '10');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('24', '11');
+INSERT INTO `coins_template_has_coins_categories_template` VALUES ('25', '1');
 
 -- ----------------------------
 -- Table structure for users_orders_template
