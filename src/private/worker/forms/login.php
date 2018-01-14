@@ -17,6 +17,7 @@ if ($isset) {
     if (verifyLogin($_POST["l-username"], $_POST["l-password"]) !== false) {
       $_SESSION["username"] = $_POST["l-username"];
       $_SESSION["rights"] = getRightsOfUser($_POST["l-username"]);
+      $_SESSION["id"] = getIdUser($_POST["l-username"]);
       addCookieUser($_POST["l-username"]);
       successRedirect("Tu es maintenant connecté, ".$_POST["l-username"], "/");
     } else {
