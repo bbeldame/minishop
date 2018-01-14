@@ -7,19 +7,12 @@ $fields = [
     "categories",
     "id",
     "name",
-    "symbol",
-    "rank",
     "price_usd",
-    "price_btc",
     "24h_volume_usd",
     "market_cap_usd",
-    "available_supply",
-    "total_supply",
-    "max_supply",
     "percent_change_1h",
     "percent_change_24h",
-    "percent_change_7d",
-    "last_updated"
+    "percent_change_7d"
 ];
 
 foreach ($fields as $f)
@@ -28,7 +21,8 @@ foreach ($fields as $f)
 
 if (count($data["categories"]) == 0)
     exit(json_encode("Il faut choisir une categorie au moins!"));
-/* Verifier si la cat existe.. */
+if (coinNameExist($data['name']))
+    exit(json_encode($data['name'] . " existe déja en base !"));
 
-exit(json_encode($data));
+exit(json_encode("success"));
 ?>

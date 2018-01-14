@@ -61,8 +61,11 @@ function clickAddNewCoin() {
     getCoinViaApi(name, function (e) {
         e.categories = categories;
         ajaxData("/admin/ajax/coin/add", e, function (r) {
-            if (e !== "success")
-                showAlert("error", e);
+            if (r === "success")
+                showAlert("success", e.name + " a été ajoutée!");
+            else
+                showAlert("error", r);
+
         });
     });
 }

@@ -9,13 +9,12 @@
     <div class="section"><span>2</span>Pick categories</div>
     <div class="inner-wrap">
         <select id="categories" size="4" multiple>
-            <option value="coin">Coin</option>
-            <option value="token">Token</option>
-            <option value="altcoin">Altcoin</option>
+            <?php
+            foreach (getAllCategories() as $k => $v) { ?>
+            <option value="<?= $v['id'] ?>"><?= ucfirst(strtolower ($v['name'])) ?></option>
+            <?php } ?>
         </select>
     </div>
-    <div class="section"><span>3</span>More infos</div>
-    a voir ?
     <div class="button-section text-center">
         <button onclick="clickAddNewCoin()">Add</button>
     </div>
@@ -36,8 +35,12 @@
             <th>Quantity</th>
             <th>Edition</th>
         </tr>
-        <?php $query = "SELECT * FROM coins_template";
-        foreach (rawQuery($query, true) as $k => $v) { ?>
+        <?php
+        $coins = getAllCoins();
+        if (count($coins) == 0)
+            echo "Aucune coins en liste";
+        else
+        foreach ($coins as $k => $v) { ?>
         <tr>
             <td><img src="https://files.coinmarketcap.com/static/img/coins/32x32/<?= $v['name'] ?>.png" alt="" /></td>
             <td><?= ucfirst(strtolower ($v['name'])) ?></td>
