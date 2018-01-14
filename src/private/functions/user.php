@@ -102,4 +102,20 @@ function getIdUser($username) {
   return $value->id;
 }
 
+function changePassword($oldPassword, $newPassword) {
+  $userId = $_SESSION["id"];
+  $mysqli = connectDB();
+  $res = mysqli_query($mysqli, "SELECT `password` FROM users_template WHERE id='".sq($userId)."' limit 1;");
+  $value = mysqli_fetch_object($res);
+  $password = $value->password;
+  if (hashPass($oldPassword) !== $password) {
+    closeDB($mysqli);
+    return FALSE;
+  } else {
+    rawQuery("UPDATE users_template SET password = '".hashPass($newPassword)."' WHERE users_template.id=".$userId.";", false);
+  }
+  closeDB($mysqli);
+  return TRUE;
+}
+
 ?>

@@ -28,6 +28,9 @@
         <li><a href="/orders">Commandes</a></li>
         <?php } ?>
         <li><a id="basket" href="/cart">Panier (<?= getTotalCart() ?>)</a></li>
+        <?php if (isConnectedUser()) { ?>
+        <li><a href="/user">Compte</a></li>
+        <?php } ?>
         <?php if (isAdmin()) { ?>
         <li><a class="button-admin" href="/admin">Admin</a></li>
         <?php } ?>

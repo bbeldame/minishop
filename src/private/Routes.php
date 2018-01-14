@@ -21,6 +21,7 @@ addRoute("/register",                   "register",             GUEST,      true
 addRoute("/login",                      "login",                GUEST,      true);
 addRoute("/cart",                       "cart",                 GUEST,      false);
 addRoute("/orders",                     "orders",               USER,       false);
+addRoute("/user",                       "user",                 USER,       false);
 addRoute("/order/*",                    "order",                USER,       false);
 addRoute("/coin/*",                     "coin",                 GUEST,      false);
 addRoute("/404",                        "404",                  GUEST,      false);
@@ -47,6 +48,7 @@ addRoute("/admin/order/*",              "admin/order",          ADMIN,      true
 addRoute("/logout",                     "",                     USER,       false, "logout");
 addRoute("/forms/register",             "",                     GUEST,      false, "forms/register");
 addRoute("/forms/login",                "",                     GUEST,      false, "forms/login");
+addRoute("/forms/changeuser",           "",                     USER,      false, "forms/changeuser");
 
 addRoute("/admin/ajax/coin/add",        "",                     GUEST,      false, "admin/ajax/coin/add");
 addRoute("/admin/ajax/coin/remove",     "",                     GUEST,      false, "admin/ajax/coin/remove");
