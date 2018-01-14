@@ -6,7 +6,7 @@ function hashPass($pass) {
 
 function doesUserExistsByMail($mail) {
   $mysqli = connectDB();
-  $res = mysqli_query($mysqli, "SELECT id FROM users_template WHERE email=\"".$mail."\";");
+  $res = mysqli_query($mysqli, "SELECT id FROM users_template WHERE email=\"".sq($mysqli, $mail)."\";");
   $found = mysqli_num_rows($res) > 0;
   closeDB($mysqli);
   return ($found);
@@ -14,7 +14,7 @@ function doesUserExistsByMail($mail) {
 
 function doesUserExistsByUsername($username) {
   $mysqli = connectDB();
-  $res = mysqli_query($mysqli, "SELECT id FROM users_template WHERE username=\"".$username."\";");
+  $res = mysqli_query($mysqli, "SELECT id FROM users_template WHERE username=\"".sq($mysqli, $username)."\";");
   $found = mysqli_num_rows($res) > 0;
   closeDB($mysqli);
   return ($found);
@@ -23,7 +23,7 @@ function doesUserExistsByUsername($username) {
 function registerUser($username, $email, $password) {
   $mysqli = connectDB();
   $res = mysqli_query($mysqli, "INSERT INTO users_template (username, email, password, `right`)
-  VALUES ('".$username."', '".$email."', '".hashPass($password)."', 1);");
+  VALUES ('".sq($mysqli, $username)."', '".sq($mysqli, $email)."', '".hashPass($password)."', 1);");
   closeDB($mysqli);
   return true;
 }
@@ -31,7 +31,7 @@ function registerUser($username, $email, $password) {
 function verifyLogin($username, $password) {
   $mysqli = connectDB();
   $res = mysqli_query($mysqli, "SELECT id FROM users_template WHERE
-  username=\"".$username."\" AND password=\"".hashPass($password)."\";");
+  username=\"".sq($mysqli, $username)."\" AND password=\"".hashPass($password)."\";");
   $found = mysqli_num_rows($res) > 0;
   closeDB($mysqli);
   return ($found);
@@ -39,7 +39,7 @@ function verifyLogin($username, $password) {
 
 function getRightsOfUser($username) {
   $mysqli = connectDB();
-  $res = mysqli_query($mysqli, "SELECT `right` FROM users_template WHERE username='$username' limit 1;");
+  $res = mysqli_query($mysqli, "SELECT `right` FROM users_template WHERE username='".sq($mysqli, $username)."' limit 1;");
   $value = mysqli_fetch_object($res);
   closeDB($mysqli);
   return $value->right;
@@ -47,16 +47,9 @@ function getRightsOfUser($username) {
 
 function changeRightsOfUser($idUser, $newRights) {
   $mysqli = connectDB();
-  $res = mysqli_result($mysqli, "UPDATE users_template SET `right`=".$newRights." WHERE id=".$idUser.";");
+  $res = mysqli_result($mysqli, "UPDATE users_template SET `right`=".sq($mysqli, $newRights)." WHERE id=".sq($mysqli, $idUser).";");
   closeDB($mysqli);
   return true;
-}
-
-function isConnectedUser() {
-  if (isset($_SESSION['username']))
-    return (true);
-  else
-    return (false);
 }
 
 function isAdmin() {
@@ -66,5 +59,39 @@ function isAdmin() {
   else
     return (false);
 }
+
+function addCookieUser($username) {
+  $cookie = $username;
+  $hash = hash('sha256', $username . COOKIE_SALT_SECRET);
+  $cookie .= ':'.$hash;
+  setcookie('session', $cookie, 2147483647, '/');
+}
+
+function isConnectedUser() {
+  if (!isset($_SESSION['username'])) {
+    $cookie = isset($_COOKIE['session']) ? $_COOKIE['session'] : false;
+    if ($cookie) {
+      if (!(list ($username, $hash) = explode(':', $cookie)))
+        return (false);
+      if (!hash_equals(hash('sha256', $username . COOKIE_SALT_SECRET), $hash))
+        return (false);
+      if (doesUserExistsByUsername($username)) {
+        $_SESSION["username"] = $username;
+        $_SESSION["rights"] = getRightsOfUser($username);
+        // Refresh cookie
+        addCookieUser($username);
+        return true;
+      } else {
+        setcookie('session', NULL, -1, "/");
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  else
+    return true;
+}
+
 
 ?>
