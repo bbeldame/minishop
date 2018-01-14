@@ -33,6 +33,7 @@ function sq($var) {
     $link = connectDB();
     $result = mysqli_real_escape_string($link, $var);
     closeDB($link);
+    return $result;
 }
 
 ?>
