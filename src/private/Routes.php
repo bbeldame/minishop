@@ -15,34 +15,34 @@ function infos() {
 }
 
 // WEBSITE ROUTES
-addRoute("/",                       "home",                 GUEST,      false);
-addRoute("/home",                   "home",                 GUEST,      false);
-addRoute("/register",               "register",             GUEST,      true);
-addRoute("/login",                  "login",                GUEST,      true);
-addRoute("/cart",                   "cart",                 GUEST,      false);
-addRoute("/orders",                 "orders",               USER,       false);
-addRoute("/order/*",                "order",                USER,       false);
-addRoute("/coin/*",                 "coin",                 GUEST,      false);
-addRoute("/404",                    "404",                  GUEST,      false);
-addRoute("/install",                "install",              GUEST,      false);
+addRoute("/",                           "home",                 GUEST,      false);
+addRoute("/home",                       "home",                 GUEST,      false);
+addRoute("/register",                   "register",             GUEST,      true);
+addRoute("/login",                      "login",                GUEST,      true);
+addRoute("/cart",                       "cart",                 GUEST,      false);
+addRoute("/orders",                     "orders",               USER,       false);
+addRoute("/order/*",                    "order",                USER,       false);
+addRoute("/coin/*",                     "coin",                 GUEST,      false);
+addRoute("/404",                        "404",                  GUEST,      false);
+addRoute("/install",                    "install",              GUEST,      false);
 
 // CART ROUTES
-addRoute("/cart/add",               "",                     GUEST,      false, "cart/ajax/add");
+addRoute("/cart/add",                   "",                     GUEST,      false, "cart/ajax/add");
 
 // ADMIN ROUTES
-addRoute("/admin",                  "admin/home",           ADMIN,      true);
-addRoute("/admin/users",            "admin/users",          ADMIN,      true);
-addRoute("/admin/categories",       "admin/categories",     ADMIN,      true);
-addRoute("/admin/coins",            "admin/coins",          ADMIN,      true);
-addRoute("/admin/user/*",           "admin/user",           ADMIN,      true);
-addRoute("/admin/category/*",       "admin/category",       ADMIN,      true);
-addRoute("/admin/coin/*",           "admin/coin",           ADMIN,      true);
-addRoute("/admin/order/*",          "admin/order",          ADMIN,      true);
+addRoute("/admin",                      "admin/home",           ADMIN,      true);
+addRoute("/admin/users",                "admin/users",          ADMIN,      true);
+addRoute("/admin/categories",           "admin/categories",     ADMIN,      true);
+addRoute("/admin/coins",                "admin/coins",          ADMIN,      true);
+addRoute("/admin/user/*",               "admin/user",           ADMIN,      true);
+addRoute("/admin/category/*",           "admin/category",       ADMIN,      true);
+addRoute("/admin/coin/*",               "admin/coin",           ADMIN,      true);
+addRoute("/admin/order/*",              "admin/order",          ADMIN,      true);
 
 // WOKERS ROUTE
-addRoute("/logout",                 "",                     USER,       false, "logout");
-addRoute("/forms/register",         "",                     GUEST,      false, "forms/register");
-addRoute("/forms/login",            "",                     GUEST,      false, "forms/login");
+addRoute("/logout",                     "",                     USER,       false, "logout");
+addRoute("/forms/register",             "",                     GUEST,      false, "forms/register");
+addRoute("/forms/login",                "",                     GUEST,      false, "forms/login");
 
 addRoute("/admin/ajax/coin/add",        "",                     GUEST,      false, "admin/ajax/coin/add");
 addRoute("/admin/ajax/coin/remove",     "",                     GUEST,      false, "admin/ajax/coin/remove");
@@ -51,6 +51,10 @@ addRoute("/admin/ajax/coin/edit",       "",                     GUEST,      fals
 addRoute("/admin/ajax/category/add",    "",                     GUEST,      false, "admin/ajax/category/add");
 addRoute("/admin/ajax/category/remove", "",                     GUEST,      false, "admin/ajax/category/remove");
 addRoute("/admin/ajax/category/edit",   "",                     GUEST,      false, "admin/ajax/category/edit");
+
+addRoute("/admin/ajax/user/add",        "",                     GUEST,      false, "admin/ajax/user/add");
+addRoute("/admin/ajax/user/remove",     "",                     GUEST,      false, "admin/ajax/user/remove");
+addRoute("/admin/ajax/user/edit",       "",                     GUEST,      false, "admin/ajax/user/edit");
 
 session_start();
 

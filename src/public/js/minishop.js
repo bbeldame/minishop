@@ -156,7 +156,7 @@ function clickEditCategory(id) {
     send.name = name;
     ajaxData("/admin/ajax/category/edit", send, function (e) {
         if (e === "success") {
-            showAlert("success", "La catégorie " + name + " a éte éditée!");
+            showAlert("success", "La catégorie " + name + " a éte éditéea!");
             setTimeout(function () {
                 window.location.reload(1);
             }, 800);

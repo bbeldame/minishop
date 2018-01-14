@@ -37,13 +37,13 @@ function categoryExist($id) {
 
 function categoryNameExist($name) {
     $result = rawQuery("SELECT * FROM coins_categories_template WHERE name = '" . sq($name) . "'", true, true);
-    return (count($result) > 0) ? true : false;
+    return (!is_null($result)) ? true : false;
 }
 
 
 function categoryIsLinkToCoin($id) {
     $result = rawQuery("SELECT * FROM coins_template_has_coins_categories_template WHERE coins_categories_template_id = $id", true, true);
-    return (count($result) > 0) ? true : false;
+    return (!is_null($result)) ? true : false;
 }
 
 ?>

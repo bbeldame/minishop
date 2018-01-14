@@ -46,7 +46,7 @@ function coinExist($id) {
 
 function coinNameExist($name) {
     $result = rawQuery("SELECT * FROM coins_template WHERE name = '$name'", true, true);
-    return (count($result) > 0) ? true : false;
+    return (!is_null($result)) ? true : false;
 }
 
 ?>
