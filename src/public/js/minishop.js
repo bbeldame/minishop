@@ -1,3 +1,7 @@
+/*****************************************
+ * SELECT MULTIPLE PARSER
+ */
+
 function getSelectValues(select) {
     var result = [];
     var options = select && select.options;
@@ -11,6 +15,25 @@ function getSelectValues(select) {
         }
     }
     return result;
+}
+
+/*****************************************
+ * AJAX
+ */
+
+function getCoinViaApi(coin, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.coinmarketcap.com/v1/ticker/" + coin + "/", true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(JSON.parse(xhr.responseText)[0]);
+        }
+        else if (xhr.status === 404 && xhr.readyState === 4){
+            showAlert("error", "La coin n'existe pas!")
+        }
+
+    };
 }
 
 function ajaxData(url, data, callback) {
@@ -29,20 +52,9 @@ function ajaxData(url, data, callback) {
     xhr.send(datas);
 }
 
-function getCoinViaApi(coin, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://api.coinmarketcap.com/v1/ticker/" + coin + "/", true);
-    xhr.send();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            callback(JSON.parse(xhr.responseText)[0]);
-        }
-        else if (xhr.status === 404 && xhr.readyState === 4){
-            showAlert("error", "La coin n'existe pas!")
-        }
-
-    };
-}
+/*****************************************
+ * ALERT CLIENT SIDE
+ */
 
 function showAlert(type, msg) {
     strong = (type === "success") ? "Success!" : "Error!";
@@ -55,7 +67,11 @@ function showAlert(type, msg) {
     }, 4000);
 }
 
-function clickAddNewCoin() {
+/*****************************************
+ * COIN EDIT ADD REMOVE
+ */
+
+function clickAddCoin() {
     var name = document.getElementById("name").value;
     var categories = getSelectValues(document.getElementById("categories"));
     var stock = document.getElementById("stock").value;
@@ -76,11 +92,31 @@ function clickAddNewCoin() {
     });
 }
 
-function deleteCoin(el) {
+function clickDeleteCoin(el) {
     console.log(el);
     id = el.getAttribute("id");
     item = el.parentNode.parentNode.parentNode;
     ajaxData("/admin/ajax/coin/remove", {'id': id}, function (e) {
+        console.log(e);
+        if (e === "success") {
+            showAlert("success", "La coin a éte éditée");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+
+function clickEditCoin(id) {
+    var send = {};
+    var stock = document.getElementById("stock").value;
+    var categories = getSelectValues(document.getElementById("categories"));
+    send.id = id;
+    send.stock = stock;
+    send.categories = categories;
+    ajaxData("/admin/ajax/coin/edit", send, function (e) {
         if (e === "success") {
             showAlert("success", "La coin a éte supprimée!");
             setTimeout(function () {
@@ -91,3 +127,25 @@ function deleteCoin(el) {
             showAlert("error", e);
     });
 }
+
+/*****************************************
+ * CATEGORY EDIT ADD REMOVE
+ */
+
+function clickAddCategory() {
+    var send = {};
+    var name = document.getElementById("name").value;
+    send.name = name;
+    ajaxData("/admin/ajax/category/add", send, function (e) {
+        if (e === "success") {
+            showAlert("success", "La catégorie " + name + " a éte crée!");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 800);
+        }
+        else
+            showAlert("error", e);
+    });
+}
+
+

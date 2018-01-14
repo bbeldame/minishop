@@ -19,7 +19,7 @@
         </select>
     </div>
     <div class="button-section text-center">
-        <button onclick="clickAddNewCoin()">Add</button>
+        <button onclick="clickAddCoin()">Add</button>
     </div>
 
 </div>
@@ -58,7 +58,7 @@
             <td><?= $v['percent_change_24h'] ?>%</td>
             <td><?= $v['percent_change_7d'] ?>%</td>
             <td><?= $v['stock'] ?></td>
-            <td style="text-align: center"><button><a href="/admin/coin/<?= $v['id'] ?>">Edit</a></button> | <button onclick="deleteCoin(this)" class="coin-remove" id="<?= $v['id'] ?>">Remove</button></td>
+            <td style="text-align: center"><button><a href="/admin/coin/<?= $v['id'] ?>">Edit</a></button> | <button onclick="clickDeleteCoin(this)" class="coin-remove" id="<?= $v['id'] ?>">Remove</button></td>
         </tr>
         <?php } ?>
     </table>

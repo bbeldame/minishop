@@ -41,8 +41,12 @@ addRoute("/logout",                 "",                     USER,       false, "
 addRoute("/forms/register",         "",                     GUEST,      false, "forms/register");
 addRoute("/forms/login",            "",                     GUEST,      false, "forms/login");
 
-addRoute("/admin/ajax/coin/add",    "",                     GUEST,      false, "admin/ajax/coin/add");
-addRoute("/admin/ajax/coin/remove", "",                     GUEST,      false, "admin/ajax/coin/remove");
+addRoute("/admin/ajax/coin/add",        "",                     GUEST,      false, "admin/ajax/coin/add");
+addRoute("/admin/ajax/coin/remove",     "",                     GUEST,      false, "admin/ajax/coin/remove");
+addRoute("/admin/ajax/coin/edit",       "",                     GUEST,      false, "admin/ajax/coin/edit");
+addRoute("/admin/ajax/category/add",    "",                     GUEST,      false, "admin/ajax/category/add");
+addRoute("/admin/ajax/category/remove", "",                     GUEST,      false, "admin/ajax/category/remove");
+addRoute("/admin/ajax/category/edit",   "",                     GUEST,      false, "admin/ajax/category/edit");
 session_start();
 
 $_SESSION['rights'] = isset($_SESSION['rights']) ? $_SESSION['rights'] : '0';

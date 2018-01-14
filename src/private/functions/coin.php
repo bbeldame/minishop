@@ -1,12 +1,17 @@
 <?php
 
-
-
 function addCoin($categories, $price, $stock, $name, $volume_24h, $percent_change_1h, $percent_change_24h, $percent_change_7d, $market_cap) {
     $query = "INSERT INTO coins_template (price, stock, name, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap) VALUES (" . sq($price) . "," . sq($stock) . ", '" . sq($name) . "', " . sq($volume_24h) . ", " . sq($percent_change_1h) . ", " . sq($percent_change_24h) . "," . sq($percent_change_7d) . ", " . sq($market_cap) . ")";
     $id = rawQuery($query, false);
     foreach ($categories as $cat)
         rawQuery("INSERT INTO coins_template_has_coins_categories_template VALUES ($id, " . sq($cat) . ")", false);
+}
+
+function editCoin($id, $stock, $categories) {
+    rawQuery("DELETE FROM coins_template_has_coins_categories_template WHERE coins_template_id = $id", false);
+    foreach ($categories as $cat)
+        rawQuery("INSERT INTO coins_template_has_coins_categories_template VALUES ($id, " . sq($cat) . ")", false);
+    rawQuery("UPDATE coins_template SET stock = " . sq($stock) . " WHERE id = " . sq($id), false);
 }
 
 function removeCoin($id) {
