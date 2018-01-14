@@ -56,7 +56,7 @@
             } else {
                 showAlert("error", "Une erreur s'est produite lors du paiement !");
                 setTimeout(function () {
-                    window.location = reload(1);
+                    window.location.reload(1);
                 }, 800);
             }
         });

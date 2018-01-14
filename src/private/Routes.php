@@ -33,6 +33,7 @@ addRoute("/cart/add",                   "",                     GUEST,      fals
 addRoute("/cart/rm",                    "",                     GUEST,      false, "cart/ajax/rm");
 addRoute("/cart/changequantity",        "",                     GUEST,      false, "cart/ajax/changequantity");
 addRoute("/cart/pay",                   "",                     GUEST,      false, "cart/ajax/pay");
+addRoute("/cart/emptybasket",           "",                     GUEST,      false, "cart/ajax/emptybasket");
 
 // ADMIN ROUTES
 addRoute("/admin",                      "admin/home",           ADMIN,      true);
